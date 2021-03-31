@@ -1,0 +1,106 @@
+<div>
+  <div class="checkout-container">
+    <div class="mobile-head-sticky">
+      <div class="head">
+        <div class="logo-nav">
+          <div class="back-btn">
+            <%= link_to image_tag("cart-back-btn.png"), 'javascript:history.back()' %>
+          </div>
+          <div class="logo">
+            <%= link_to image_tag("agzaga_black_logo.svg"), root_url %>
+          </div>
+        </div>
+        <div class="mob-detail-btn" id="flip">
+          Details
+        </div>
+
+        <div class="mob-detail-btn close-summary-modal">
+          Close
+        </div>
+
+        <div class="mob-detail-btn order-detail-section" >
+          <span class="order-summary-section">
+            <%= render( 'spree/shared/image', image: @order.line_items.first.variant.gallery.images.first || @order.line_items.first.variant.product.gallery.images.first, size: :small ) %>
+            <span class="qty-count"><%= @order.line_items.count %></span>
+          </span>
+          <span class="order-total">$<%= '%.2f' % @order.total %></span>
+        </div>
+      </div>
+    </div>
+    <div class="checkout-cart-detail">
+      <div class="left-container">
+        <div class="checkout-summary-group">
+          <%= render partial: 'checkout_v3_summary_detail' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="checkout-pay-detail">
+      <% if Spree::FfaFundraiserEvent.last&.is_active? %>
+        <div id="cart_page" class="ffa-section">
+          <%= render 'spree/checkout/cart_page_modal', order: @order %>
+        </div>
+      <% end %>
+
+      <div class="wallet-payment-div" style="display:none">
+        <div class="wallet-payment-button">
+        <%= render 'spree/orders/stripe_payment_request_button', cart_checkout_payment_method: Spree::PaymentMethod::StripeCreditCard.first %>
+        </div>
+
+        <div class="divider">
+          <hr>
+          <p class="divider-text ag-p-sm">Or pay with card</p>
+        </div>
+      </div>
+
+      <div id="checkout-edit-form-div">
+        <%= render 'spree/checkout/checkout_form' %>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    Spree.current_order_id = "<%= @order.number %>"
+    Spree.current_order_token = "<%= @order.guest_token %>"
+  </script>
+</div>
+
+<%= form_for (@order), url: update_checkout_registration_path(guest_user_auth: true), remote: true, method: :put, html: { id: 'checkout_form_registration' } do |f| %>
+  <input name="order[email]" id="hidden-email" type="hidden" value="">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+  <button id="guest-member-login" class="d-none" type="submit"></button>
+<% end %>
+
+<%= render partial: 'spree/checkout/registration_modal' %>
+
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script>
+ _affirm_config = {
+   public_api_key:  "<%= ENV['AFFIRM_PUBLIC_KEY'] %>",
+   script:         "<%= ENV['AFFIRM_SCRIPT'] %>"
+ };
+(function(m,g,n,d,a,e,h,c){var b=m[n]||{},k=document.createElement(e),p=document.getElementsByTagName(e)[0],l=function(a,b,c){return function(){a[b]._.push([c,arguments])}};b[d]=l(b,d,"set");var f=b[d];b[a]={};b[a]._=[];f._=[];b._=[];b[a][h]=l(b,a,h);b[c]=function(){b._.push([h,arguments])};a=0;for(c="set add save post open empty reset on off trigger ready setProduct".split(" ");a<c.length;a++)f[c[a]]=l(b,d,c[a]);a=0;for(c=["get","token","url","items"];a<c.length;a++)f[c[a]]=function(){};k.async=
+!0;k.src=g[e];p.parentNode.insertBefore(k,p);delete g[e];f(g);m[n]=b})(window,_affirm_config,"affirm","checkout","ui","script","ready","jsReady");
+</script>
+
+<script src="https://www.paypal.com/sdk/js?client-id=<%= ENV['PAYPAL_CLIENT_ID'] %>&disable-funding=card&commit=true"></script>
+
+
+<script>
+  $(window).on('load', function(){
+    if ($('#payment-request-button')[0].childElementCount != 0)
+    {
+      $('.wallet-payment-div').show();
+    }
+  });
+</script>
+
+<% if Spree::FfaFundraiserEvent.last&.is_active? %>
+  <div id="selected-chapter-update">
+    <%= render partial: 'spree/checkout/chapter_selection_modal' %>
+  </div>
+<% end %>
+
+# touched on 2025-05-22T20:40:22.747854Z
+# touched on 2025-05-22T22:30:28.148909Z
