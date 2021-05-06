@@ -1,0 +1,10 @@
+<% if content_for?(:facebook_micro_data) %>
+  <%= yield(:facebook_micro_data).html_safe %>
+
+<% else %>
+  <meta property="og:title" content="Agzaga">
+  <meta property="og:image" content="http://agazon-storage.nyc3.digitaloceanspaces.com/public_images/new_social_share_logo.png"/>
+  <meta property="og:image:secure_url" content="https://agazon-storage.nyc3.digitaloceanspaces.com/public_images/new_social_share_logo.png"/>
+<% end %>
+
+# touched on 2025-05-22T22:32:39.210840Z
