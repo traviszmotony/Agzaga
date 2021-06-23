@@ -1,0 +1,63 @@
+<div
+  class="modal custom_hose_verfication"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content product-review-modal-content">
+    <div class="modal-header">
+      <div class="modal-title">
+        <div class="poppins-bold-text-24">Remove custom hose products from cart</div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="poppins-text-16">
+        Please use Remove all button to delete all custom hose products from cart or you can also remove any specific configuration from following table.
+      </div>
+      <% if current_order&.custom_hose_configurations.present? %>
+        <% @custom_hose_configurations = current_order&.custom_hose_configurations %>
+        <div class="custom-hose-configurations poppins-text-14">
+          <h1 class="poppins-bold-text-18 custom-hose-configuration-header">Custom Hose <%= 'Configuration'.pluralize( @custom_hose_configurations.length) %></h1>
+          <table class="table custom-hose-configuration-table">
+            <thead>
+              <tr>
+                <th>Color</th>
+                <th>Length</th>
+                <th>Fitting 1</th>
+                <th>Fitting 2</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @custom_hose_configurations.each do |custom_hose_configuration|%>
+                <tr>
+                  <td><%= custom_hose_configuration.custom_hose.option_values.pluck(:name).join(',')%></td>
+                  <td><%= custom_hose_configuration.length%></td>
+                  <td><%= custom_hose_configuration.fitting_1.option_values.pluck(:name).join(', ')%></td>
+                  <td><%= custom_hose_configuration.fitting_2.option_values.pluck(:name).join(', ')%></td>
+                  <td><%= link_to image_tag("times_circle_red.svg"), custom_hose_configuration_path(id:custom_hose_configuration.id),method: :delete, data: { confirm: 'Are you sure?' }, title: 'Remove from cart', class: 'hose-delete-modal-button' %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      <% end %>
+
+      <div class="buttons_section">
+        <div class="clear-link custom-modal-btn" href="" data-toggle= "modal" data-target=".custom_hose_verfication">
+          <%= link_to 'Remove All', spree::cart_destroy_line_item_path(id: line_item.id ), class:'delete-button', method: :delete, remote: true %>
+        </div>
+
+        <div class="clear-link poppins-text-12 custom-page-btn">
+          Cancel
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+# touched on 2025-05-22T22:34:16.337181Z

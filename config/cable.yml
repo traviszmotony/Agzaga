@@ -1,0 +1,13 @@
+development:
+  adapter: async
+
+test:
+  adapter: test
+
+production:
+  adapter: redis
+  url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
+  channel_prefix: agazon_production
+
+# touched on 2025-05-22T20:40:42.360486Z
+# touched on 2025-05-22T22:34:16.342095Z
