@@ -1,0 +1,85 @@
+<div class="align-right">
+  <% if can?(:create, Spree::DealsPage) %>
+    <%= link_to 'New Deals', spree.new_admin_deals_page_path, class: 'mb-5 btn btn-primary' %>
+  <% end %>
+  <% content_for :page_title do %>
+    Deals Page
+  <% end %>
+  <% if @deals_page.any? %>
+    <table class="index align-left sortable inline-editable-table" data-sortable-link="<%= update_positions_admin_home_page_reviews_path %>">
+      <colgroup>
+        <col style="width: 5%;">
+        <col style="width: 10%;">
+        <col style="width: 12%;">
+        <col style="width: 17%;">
+        <col style="width: 27%;">
+        <col style="width: 10%;">
+        <col style="width: 10%;">
+        <col style="width: 10%;">
+      </colgroup>
+
+      <thead>
+        <tr>
+          <th></th>
+          <th>Image</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Tag</th>
+          <th>Visibility</th>
+          <th class="actions"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <%- @deals_page.each do |deal_page| -%>
+          <tr id="<%= spree_dom_id deal_page %>">
+            <td>
+              <span class="handle"></span>
+            </td>
+
+            <td class="align-center">
+              <% deal_page.images.each do |image| %>
+                <%= image_tag(image.url(:product))%>
+              <% end %>
+            </td>
+
+            <td>
+              <%= deal_page.title %>
+            </td>
+
+            <td>
+              <%= deal_page.description %>
+            </td>
+
+            <td>
+              <%= deal_page.tag %>
+            </td>
+
+            <td>
+              <%= check_box("visibility", deal_page.visibility , {checked: deal_page.visibility,  :disabled => "disabled"}) %>
+            </td>
+
+            <td class="actions">
+              <% if can? :manage, Spree::DealsPage %>
+                <%= link_to_edit deal_page, no_text: true, class: 'edit' %>
+                <%= link_to_delete deal_page, no_text: true %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+
+    <div class="no-objects-found">
+      <%= I18n.t("spree.no_results") %>
+    </div>
+  <% end %>
+</div>
+
+
+# touched on 2025-05-22T19:07:32.857718Z
+# touched on 2025-05-22T19:20:25.403966Z
+# touched on 2025-05-22T19:22:05.372877Z
+# touched on 2025-05-22T19:24:52.319878Z
+# touched on 2025-05-22T22:38:16.616817Z
