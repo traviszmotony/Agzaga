@@ -1,0 +1,150 @@
+<% content_for :title, "Shipping & Returns | Agzaga" %>
+<% content_for :meta_description, "Returns with Agazon are easy! If you're not satisfied with your purchase, we'll do whatever we can to make it right. How long will it take to receive my order? View the details here." %>
+
+<div class="container">
+  <div class="text-center">
+      <div class="shipping-icon">
+        <%= image_tag "shipping.svg", class: 'd-md-inline-flex d-none', alt: 'Shipping' %>
+        <%= image_tag "shipping-mob.svg", class: 'd-md-none d-inline-flex', alt: 'Shipping' %>
+
+      </div>
+    <h1 class="draught-textured-h1 main-heading">
+      SHIPPING POLICY
+    </h1>
+
+    <h3 class="poppins-h4 sub-heading">
+      Have any questions about our shipping? Here’s how it works.
+    </h3>
+
+  </div>
+
+  <div id="faq-collapse-group" class="row">
+    <div class="col-12 search-control-div">
+      <div class="card active">
+        <div class="question search-text" id="question-1" data-toggle="collapse" data-target="#answer-1" aria-expanded="true" aria-controls="answer-1">
+          Where will we ship? (Delivery Zone)
+        </div>
+
+        <div id="answer-1" class="collapse show" aria-labelledby="question-1" data-parent="#faq-collapse-group">
+          <div class="answer poppins-text-16 search-text">
+            Agzaga ships to the contiguous United States, which includes the lower 48 states and the District of Columbia.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 search-control-div">
+      <div class="card">
+        <div class="question search-text" id="question-2" data-toggle="collapse" data-target="#answer-2" aria-expanded="false" aria-controls="answer-2">
+          How long will it take to ship? (Processing TIme)
+        </div>
+
+        <div id="answer-2" class="collapse" aria-labelledby="question-2" data-parent="#faq-collapse-group">
+          <div class="answer poppins-text-16 search-text">
+            Any orders placed before 10:00am CST Monday-Friday will ship the same day. All other orders will ship next business day.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 search-control-div">
+      <div class="card">
+        <div class="question search-text" id="question-3" data-toggle="collapse" data-target="#answer-3" aria-expanded="false" aria-controls="answer-3">
+          How much does it cost to ship? (Shipping Costs)
+        </div>
+
+        <div id="answer-3" class="collapse" aria-labelledby="question-3" data-parent="#faq-collapse-group">
+          <div class="answer poppins-text-16 search-text">
+            Standard shipping costs on an order are calculated based on the size of order with a minimum of $7.99 and a maximum of $99.99.
+            <br>
+            Expedited 3-day Max shipping guarantees your order will arrive in 3 days or less.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 search-control-div">
+      <div class="card">
+        <div class="question search-text" id="question-4" data-toggle="collapse" data-target="#answer-4" aria-expanded="false" aria-controls="answer-4">
+          How do I track my shipment? (Tracking)
+        </div>
+
+        <div id="answer-4" class="collapse" aria-labelledby="question-4" data-parent="#faq-collapse-group">
+          <div class="answer poppins-text-16 search-text">
+            A tracking number will be emailed to you after your product has been shipped.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 search-control-div">
+      <div class="card">
+        <div class="question search-text" id="question-5" data-toggle="collapse" data-target="#answer-5" aria-expanded="false" aria-controls="answer-5">
+          Large orders which require LTL freight:
+        </div>
+
+        <div id="answer-5" class="collapse" aria-labelledby="question-5" data-parent="#faq-collapse-group">
+          <div class="answer poppins-text-16 search-text">
+            If your order requires LTL freight, you will be contacted by Agzaga Support, and a delivery time will be scheduled. In this case, you will need to be at the delivery location at the time of arrival in order to sign for the shipment.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 search-control-div">
+      <div class="card">
+        <div class="question search-text" id="question-6" data-toggle="collapse" data-target="#answer-6" aria-expanded="false" aria-controls="answer-6">
+          Potential Service Interruptions
+        </div>
+
+        <div id="answer-6" class="collapse" aria-labelledby="question-6" data-parent="#faq-collapse-group">
+          <div class="answer poppins-text-16 search-text">
+            If your order will be delayed due to variables outside our control, your tracking information will be updated and we will do our best to contact you to let you know.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 search-control-div">
+      <div class="card">
+        <div class="question search-text" id="question-7" data-toggle="collapse" data-target="#answer-7" aria-expanded="false" aria-controls="answer-7">
+          Returns
+        </div>
+
+        <div id="answer-7" class="collapse" aria-labelledby="question-7" data-parent="#faq-collapse-group">
+          <div class="answer poppins-text-16 search-text">
+            In case of a return, you will be emailed a shipping label from Agzaga which will need to be placed on your packaged and mailed back.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 search-control-div">
+      <div class="card">
+        <div class="question search-text" id="custom-product-returns" data-toggle="collapse" data-target="#answer-8" aria-expanded="false" aria-controls="answer-8">
+          Custom Product Returns
+        </div>
+
+        <div id="answer-8" class="collapse" aria-labelledby="custom-product-returns" data-parent="#faq-collapse-group">
+          <div class="answer poppins-text-16 search-text">
+            Agzaga, LLC warrants that custom hose products will be free from defects in material and workmanship under normal use. If your custom hose product is defective, please contact our customer support team (<%= mail_to 'support@agzaga.com', nil, { class: 'clear-link' } %>). Custom hose products that are not defective in material or workmanship are not eligible for return.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="data-container contact-methods-section">
+    <h2 class="question-heading" id="still-have-questions">
+      Still have questions?
+    </h2>
+
+    <div class="text-center mb-5">
+      <a class="poppins-text-16 btn-continue clear-link" href="/contact">Contact us</a>
+    </div>
+
+    <%= render partial: '/spree/pages/partials/news_letter_form' %>
+  </div>
+</div>
+
+# touched on 2025-05-22T22:38:20.259991Z
