@@ -1,0 +1,79 @@
+<div class="search-list-box">
+  <% if search_from_results %>
+    <div class="modal-nav">
+      <%= link_to spree::root_url, class: 'ag-logo-link', id: "ag-logo" do %>
+        <%= image_tag 'ag_logo.svg', alt: 'Agzaga', class: 'float-left' %>
+      <% end %>
+
+      <div class="search-form_v2" id="search-modal-nav">
+        <div class="search-bar-icon">
+          <div class= "search-field-icon d-glass"></div>
+          <div class= "m-search-field-icon m-default-icon"></div>
+        </div>
+
+        <%= search_field_tag :keywords, params[:keywords], placeholder: 'Search our catalog', autocomplete: "off", class: 'search-input', id: 'modal-search-bar' %>
+      </div>
+
+      <input type="submit" class="hidden-submit-btn" value="Search" />
+
+      <div class="search-close-icon">
+        Cancel
+      </div>
+    </div>
+  <% end %>
+
+  <div class="search-list-block">
+    <div class="nav-header-container">
+      <div class="search-list-heading recent-searches-heading">
+        Recently Searched
+      </div>
+
+      <div class="clear-history" id="clear-history-link">Clear History</div>
+    </div>
+
+    <div class="search-list recent-searches">
+    </div>
+
+    <div class="search-list mobile-search-results">
+    </div>
+
+    <div class="search-list products-list">
+    </div>
+  </div>
+
+  <div class="no-result-found">
+    <div class="search-list">
+      <div class="no-search-result">
+        <div class="no-result-found-heading">
+          Sorry, we couldn't find any results matching
+        </div>
+        <div class="no-result-heading">
+        </div>
+        <div class="no-search-try">
+        Try:
+          <ul class="no-search-list">
+            <li>
+              Searching again using more general terms
+            </li>
+            <li>
+              Exploring the catalog <span class="search-by-category"> <%= link_to 'by_category', product_categories_path, class: 'search-by-category-link'%></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="search-feature-block">
+    <div class="search-list-heading">
+      Top Search Results
+      <span class="search-list-category ml-1"></span>
+      <span class="search-list-title m-1"></span>
+    </div>
+
+    <div class="products-area">
+    </div>
+  </div>
+</div>
+
+# touched on 2025-05-22T22:38:27.420493Z
