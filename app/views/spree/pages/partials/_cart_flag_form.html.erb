@@ -1,0 +1,61 @@
+<% product = product.product%>
+<% variants_stock = product_out_of_stock(product) %>
+<% if out_of_stock(product, variants_stock) %>
+  <%= hidden_field_tag "disable-select2", true %>
+<% end %>
+<div class="add-to-cart-section" id="cart-form" data-hook="cart_form">
+  <% unless product.variants.any? %>
+    <%= form_for :order, html: { method: :post, remote: true}, url: populate_orders_path do |f| %>
+      <div id="inside-product-cart-form" data-hook="inside_product_cart_form" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+        <%= hidden_field_tag 'variant_id', product.master.id %>
+
+        <% if product.price_for(current_pricing_options) and !product.price.nil? %>
+          <div class="cart">
+            <div class="quantity-btn-group <%= 'disable-quantity-btn-group' if out_of_stock(product, variants_stock) || !product.variants.empty? %>">
+              <div class="btn-group">
+                <%= button_tag '', class: 'button disable_btn sub-btn', type: 'button' %>
+                <% if product.master.is_backorderable? %>
+                  <% if product.master.get_max_stock > 0 %>
+                    <%= number_field_tag :quantity, 1, class: "quantity text-center product-quantity-field-#{product.id}", min: 1, max: product.master.get_max_stock  %>
+                  <% else %>
+                    <%= number_field_tag :quantity, 1, class: "quantity text-center product-quantity-field-#{product.id}", min: 1, max: 500 %>
+                  <% end %>
+
+                <% else %>
+                  <%= number_field_tag :quantity, 1, class: "quantity text-center product-quantity-field-#{product.id}", min: 1, max: product.master.total_on_hand %>
+                <% end%>
+                <%= button_tag '', class: 'button add-btn', type: 'button' %>
+              </div>
+
+              <div class="poppins-text-10 stock-error-message"></div>
+
+              <% taxon_names = product.taxons.flat_map(&:self_and_ancestors).uniq.pluck(:name).map(&:downcase) %>
+            </div>
+            <div class="add-to-cart-button">
+              <% if out_of_stock(product, variants_stock) %>
+                <%= button_tag class: 'poppins-bold-text-16 mt-0 out-of-stock-btn add-to-cart', id: 'add-to-cart-button', disabled: true, type: :submit do %>
+                  <%= t('spree.add_to_cart') %>
+                <% end %>
+              <% else %>
+                <div>
+                  <%= button_tag class: "poppins-bold-text-16 mt-0 btn-gradient-orange add-to-cart", id: 'add-to-cart-button', type: :submit do %>
+                    <%= t('spree.add_to_cart') %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  <% else %>
+
+    <%= link_to 'VIEW PRODUCT', spree.product_path(product.slug), target: '_blank', class: 'poppins-bold-text-16 mt-0 btn-gradient-orange view-button' %>
+
+  <% end %>
+</div>
+
+
+# touched on 2025-05-22T19:15:08.369023Z
+# touched on 2025-05-22T22:42:49.023235Z
