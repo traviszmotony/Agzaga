@@ -17,3 +17,4 @@ WHERE "spree_prices"."deleted_at" IS NULL AND "spree_variants"."id" = "spree_pri
   AND (spree_sale_prices.end_at >= (now() at time zone 'utc') OR spree_sale_prices.end_at IS NULL));
 
 # touched on 2025-05-22T22:34:09.335460Z
+# touched on 2025-05-22T22:43:39.233581Z
