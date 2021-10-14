@@ -1,0 +1,41 @@
+.ag-btn-group {
+  position: relative;
+  display: flex;
+  vertical-align: middle;
+  margin: 10px;
+}
+
+.ag-btn-group {
+  .ag-btn:not(:nth-child(1), :nth-last-child(1)) {
+    border-radius: 0px;
+  }
+
+  .ag-btn:nth-child(1) {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+
+  .ag-btn:nth-last-child(1) {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
+
+  .ag-btn:not(:last-child) {
+    border-right: 0;
+  }
+}
+
+@media(max-width: 991px) {
+  .ag-btn-group {
+    display: flex;
+    flex-wrap: wrap;
+
+    .ag-btn:not(:nth-child(1), :nth-last-child(1)) {
+      border-radius: 0px;
+    }
+  }
+}
+
+# touched on 2025-05-22T19:14:48.416410Z
+# touched on 2025-05-22T19:23:39.109117Z
+# touched on 2025-05-22T22:45:25.331381Z
