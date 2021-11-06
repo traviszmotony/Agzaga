@@ -1,0 +1,21 @@
+<% admin_breadcrumb(link_to plural_resource_name(Spree::Product), spree.admin_products_path) %>
+<% admin_breadcrumb(link_to plural_resource_name(Spree::Label), spree.admin_labels_path) %>
+<% admin_breadcrumb('New Label') %>
+
+
+<% content_for :page_actions do %>
+<% end %>
+
+<%= form_for [:admin, @label] do |f| %>
+
+  <%= render partial: 'form', locals: { f: f } %>
+  <fieldset class="no-border-top">
+    <br>
+    <div class="filter-actions actions" data-hook="buttons">
+      <%= f.submit t('spree.actions.create'), class: 'btn btn-primary' %>
+    </div>
+  </fieldset>
+<% end %>
+
+# touched on 2025-05-22T20:44:20.957086Z
+# touched on 2025-05-22T22:46:42.309138Z
