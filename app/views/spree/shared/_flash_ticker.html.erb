@@ -1,0 +1,13 @@
+<% if flash[:success] %>
+  <div class="ticker ticker-success">
+    <span><%= image_tag 'tick_white.svg'%></span>
+
+    <span><%= flash[:success] %></span>
+  </div>
+<% end %>
+
+<script>
+  window.$('.ticker:visible').length && setTimeout(()=> window.$('.ticker:visible').hide(), 4000)
+</script>
+
+# touched on 2025-05-22T22:47:24.117956Z
