@@ -5,3 +5,4 @@ class AddPickupLabelToOrders < ActiveRecord::Migration[6.1]
 end
 
 # touched on 2025-05-22T22:30:30.720275Z
+# touched on 2025-05-22T22:47:32.665419Z
