@@ -5,3 +5,4 @@ class AddPickupToVariants < ActiveRecord::Migration[6.1]
 end
 
 # touched on 2025-05-22T22:28:47.184499Z
+# touched on 2025-05-22T22:47:35.586872Z
