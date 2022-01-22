@@ -1,0 +1,40 @@
+<% check_validation = @order.pick_up_person&.firstname.blank? ? 'check-validation' : '' %>
+
+<div class="inner was-validated" data-hook="pick_up_person_inner" %>
+  <div class="shipping-address-field top-round-border ag-input-neutral">
+    <div class="ag-input-group-box name-validation" data-address="pick_up_address">
+      <%= form.text_field :firstname, required: true, class: "#{check_validation} name-validation ag-input-field custom-field-input name-field", placeholder: "First Name" %>
+
+      <div class="ag-input-icon-append">
+        <%= image_tag 'invalid-field.png' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="shipping-address-field ag-input-neutral">
+    <div class="ag-input-group-box top-border-none" data-address="pick_up_address">
+      <%= form.text_field :lastname, required: true, class: "#{check_validation} name-validation ag-input-field custom-field-input name-field", placeholder: "Last Name" %>
+
+      <div class="ag-input-icon-append">
+        <%= image_tag 'invalid-field.png' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="shipping-address-field bottom-round-border ag-input-neutral">
+    <div class="ag-input-group-box top-border-none pick-up-person-email-validation phone-validation" data-address="pick_up_address">
+      <%= form.text_field :email, required: true, class: "#{check_validation} ag-input-field custom-field-input name-field", placeholder: "Customer Email" %>
+
+      <div class="ag-input-icon-append">
+        <%= image_tag 'invalid-field.png' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pick-up-error-message error-messages-section pick_up_address"></div>
+
+# touched on 2025-05-22T19:19:57.498386Z
+# touched on 2025-05-22T20:43:35.006953Z
+# touched on 2025-05-22T21:58:08.588241Z
+# touched on 2025-05-22T22:52:27.374319Z
