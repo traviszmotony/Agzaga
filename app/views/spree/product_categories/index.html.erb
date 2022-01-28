@@ -1,0 +1,28 @@
+<% content_for :title, 'Agzaga - All Products' %>
+
+<div class="row data-container">
+  <div class="category-container">
+    <div class="link d-flex flex-row  poppins-text-14">
+      <a class="home-link clear-link" href="<%= spree.root_path %>">Home</a><div class="slash">/</div>
+      <div class="products-link" >Products</div>
+    </div>
+
+    <div id="all-products" class="data-container">
+      <h1 class="top-heading">ALL PRODUCTS</h1>
+    </div>
+
+    <div id="hero-div">
+      <%= render partial: 'spree/product_categories/partials/slider' %>
+    </div>
+
+    <%= render partial: 'spree/product_categories/partials/categories' %>
+    <div class="full-page-line"></div>
+    <%= render partial: 'spree/product_categories/partials/newest_products' %>
+  </div>
+</div>
+
+<%= render partial: 'spree/shared/pick_up_popup' %>
+
+# touched on 2025-05-22T19:09:17.616052Z
+# touched on 2025-05-22T19:13:49.372064Z
+# touched on 2025-05-22T22:52:38.465949Z
