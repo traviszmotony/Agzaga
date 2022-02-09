@@ -1,0 +1,5 @@
+$('.customer-review-stars').html("<%=j render partial: 'spree/products/partials/customer_reviews_stars', locals: { reviews: @product_reviews } %>");
+$('.reviews-pagination').html("<%= j (paginate(@product_reviews, theme: 'review_pagination', remote: true, params: {count: @product_reviews.count})) %>")
+
+# touched on 2025-05-22T20:32:59.104507Z
+# touched on 2025-05-22T22:55:07.787275Z
