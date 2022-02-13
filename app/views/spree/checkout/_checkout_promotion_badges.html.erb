@@ -1,0 +1,62 @@
+<% if order.line_item_adjustments.nonzero.exists? && order.line_item_adjustments.nonzero.promotion.present? %>
+  <% order.line_item_adjustments.nonzero.promotion.eligible.group_by(&:label).each do |label, adjustments| %>
+    <% discount_percentage = adjustments.first.source.calculator.preferences %>
+    <% discount_percentage = discount_percentage[discount_percentage.keys[0]].to_i %>
+    <% adjustment = adjustments&.first %>
+    <% adjustment_promo = adjustment&.promotion_code.present? ? adjustment&.promotion_code&.value&.upcase : adjustment&.label %>
+    <div class="promo-badge-section">
+      <div class="promo-badge ag-font-normal ag-p-sm">
+        <div class="promo-badge-value"><%= adjustment_promo %></div>
+
+        <%= link_to image_tag("remove-promo-icon.svg", class: 'remove-promo-icon'), remove_coupon_url( coupon_code: adjustments&.first&.promotion_code&.value ), remote: :true, method: :delete %>
+      </div>
+
+      <div class="promo-discount ag-font-normal ag-p-sm">
+        <%= Spree::Money.new(adjustments.sum(&:amount), currency: order.currency).to_html %>
+      </div>
+    </div>
+
+    <div class="discount-percentage ag-p-xsm"><%= "#{adjustment.source.calculator.type.include?("Rate") ? "$#{discount_percentage} off" : "#{discount_percentage}% off"}" %></div>
+  <% end %>
+<% end %>
+
+<% if order.adjustments.nonzero.eligible.exists? %>
+  <% order.adjustments.nonzero.eligible.each do |adjustment| %>
+    <% discount_percentage = adjustment.source.calculator.preferences %>
+    <% discount_percentage = discount_percentage[discount_percentage.keys[0]].to_i %>
+
+    <% next if (adjustment.source_type == 'Spree::TaxRate') and (adjustment.amount == 0) %>
+
+    <div class="promo-badge-section">
+      <div class="promo-badge ag-font-normal ag-p-sm">
+        <%= adjustment&.promotion_code&.value.upcase %>
+
+        <%= link_to image_tag("remove-promo-icon.svg", class: 'remove-promo-icon'), remove_coupon_url( coupon_code: adjustment&.promotion_code&.value ), remote: :true, method: :delete %>
+      </div>
+
+      <div class="promo-discount ag-font-normal ag-p-sm">
+        <%= adjustment.display_amount.to_html %>
+      </div>
+    </div>
+
+    <div class="discount-percentage ag-p-xsm"><%= "#{adjustment.source.calculator.type.include?("Rate") ? "$#{discount_percentage} off" : "#{discount_percentage}% off"}" %></div>
+  <% end %>
+<% end %>
+
+<% if order.shipment_adjustments.nonzero.exists? %>
+  <% order.shipment_adjustments.nonzero.promotion.eligible.group_by(&:label).each do |label, adjustments| %>
+    <div class="promo-badge-section">
+      <div class="promo-badge ag-font-normal ag-p-sm">
+        <%= label.split("(")[1].delete(")").upcase %>
+
+        <%= link_to image_tag("remove-promo-icon.svg", class: 'remove-promo-icon'), remove_coupon_url( coupon_code: adjustments&.first&.promotion_code&.value ), remote: :true, method: :delete %>
+      </div>
+
+      <div class="promo-discount ag-font-normal ag-p-sm">
+        <%= Spree::Money.new(adjustments.sum(&:amount), currency: order.currency).to_html %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+# touched on 2025-05-22T22:55:10.197202Z

@@ -6,3 +6,4 @@ class AddOuthFieldToSpreeUser < ActiveRecord::Migration[6.1]
 end
 
 # touched on 2025-05-22T22:34:51.841664Z
+# touched on 2025-05-22T22:55:10.198192Z
