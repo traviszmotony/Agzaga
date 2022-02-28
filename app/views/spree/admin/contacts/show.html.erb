@@ -1,0 +1,24 @@
+<% fullname = [@contact.firstname, @contact.lastname].join(' ') %>
+
+<div class="field">
+  <h6 class="m-1">Name</h6>
+  <p class="pl-4"><%= fullname %></p>
+</div>
+
+<div class="field">
+  <h6 class="m-1">Email</h6>
+  <p class="pl-4"><%= @contact.email%></p>
+</div>
+
+<div class="field">
+  <h6 class="m-1">Phone</h6>
+  <p class="pl-4"><%= @contact.phone%></p>
+</div>
+
+<div class="field">
+  <h6 class="m-1">Messsage</h6>
+  <div class="container"><%= simple_format @contact.messsage %></div>
+</div>
+
+# touched on 2025-05-22T20:41:06.624036Z
+# touched on 2025-05-22T22:55:38.389575Z
