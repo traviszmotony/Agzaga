@@ -1,0 +1,11 @@
+<% if @error.present? %>
+  $('#nav_login_pass_message').addClass('error-data').html('Invalid password.').show();
+  $('#nav_login_password').parent().addClass('error-field');
+  
+<% else %>
+  location.reload();
+<% end %>
+
+# touched on 2025-05-22T20:35:34.476380Z
+# touched on 2025-05-22T20:37:55.528726Z
+# touched on 2025-05-22T22:55:43.105187Z
