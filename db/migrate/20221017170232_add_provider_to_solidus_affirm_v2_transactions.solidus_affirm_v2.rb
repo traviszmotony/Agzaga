@@ -8,3 +8,4 @@ class AddProviderToSolidusAffirmV2Transactions < ActiveRecord::Migration[5.1]
 end
 
 # touched on 2025-05-22T22:45:09.640348Z
+# touched on 2025-05-22T22:55:52.020458Z
