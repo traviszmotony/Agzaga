@@ -1,0 +1,117 @@
+<div class="data-container">
+  <div class="product-search-page">
+    <% if @products.any? %>
+      <div class="breadcrumb-group">
+        <div class="back-btn">
+          <%= link_to request.referer do %>
+            <span class="back-arrow">
+              <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.66667 9L1.5 5M1.5 5L5.66667 1M1.5 5L11.5 5" stroke="#52525B" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+
+            <span class="back-lbl">Back</span>
+          <% end %>
+        </div>
+
+        <% separator = '<span class="separator">/<span>'.html_safe %>
+        <%= taxon_breadcrumbs(@taxon, separator, '') %>
+
+        <div class="products-sort products-sort-mobile">
+          <div class="dropdown">
+            <div class="poppins-text-16 sort_by-btn <%= 'sorted' if h(params.dig(:order_by)).present? %>"  data-display="static" aria-haspopup="true" aria-expanded="true" data-toggle="modal" data-target="#sortingModal">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6.11111 13.1112V3.77783M6.11111 3.77783L3 6.88894M6.11111 3.77783L9.22222 6.88894M13.8889 6.88894V16.2223M13.8889 16.2223L17 13.1112M13.8889 16.2223L10.7778 13.1112" stroke="#52525B" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+
+              <%= h(params.dig(:order_by)).present? ? h(params.dig(:order_by)) : 'Sort By' %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="search-for">
+        Search for:
+      </div>
+    <% end %>
+
+    <div class="sub-taxons-and-sort-group">
+      <div class="search-product-keyword taxon-name">
+        <% if @products.any? %>
+          “<%= h(params[:keywords]) %>”
+          <span class="product-counts category-count">(<%= @products&.total_count.to_i %>)</span>
+        <% else %>
+          <div class="no-result-section">
+            <div class="no-result-found">
+              <span class="no-result-heading">Oops! No results for</span> “<%= h(params[:keywords]) %>”.
+            </div>
+
+            <div class="no-result-text">
+              It’s okay, though. Try searching for something less specific, or check your spelling.
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <% if @products.any? %>
+        <div class="products-sort">
+          <div class="dropdown">
+            <div class="poppins-text-16 sort_by-btn <%= 'sorted' if h(params.dig(:order_by)).present? %>"  data-display="static" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6.11111 13.1112V3.77783M6.11111 3.77783L3 6.88894M6.11111 3.77783L9.22222 6.88894M13.8889 6.88894V16.2223M13.8889 16.2223L17 13.1112M13.8889 16.2223L10.7778 13.1112" stroke="#52525B" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+
+              <%= h(params.dig(:order_by)).present? ? h(params.dig(:order_by)) : 'Sort By' %>
+            </div>
+
+            <div class="dropdown-menu sort_by-options">
+              <%= link_to "Sale", spree.products_path(request.query_parameters.merge( order_by: 'Sale').except(:page)), class: "p-0 poppins-text-16 dropdown-item", rel: 'nofollow' %>
+
+              <%= link_to "Staff Pick", spree.products_path(request.query_parameters.merge( order_by: 'Staff Pick').except(:page)), class: "p-0 poppins-text-16 dropdown-item", rel: 'nofollow' %>
+
+              <%= link_to "Best Sellers", spree.products_path(request.query_parameters.merge( order_by: 'Best Sellers').except(:page)), class: "p-0 poppins-text-16 dropdown-item", rel: 'nofollow' %>
+
+              <%= link_to "Price: Low to High", spree.products_path(request.query_parameters.merge( order_by: 'Price: Low to High').except(:page)), class: "p-0 poppins-text-16 dropdown-item", rel: 'nofollow' %>
+
+              <%= link_to "Price: High to Low", spree.products_path(request.query_parameters.merge( order_by: 'Price: High to Low').except(:page)), class: "p-0 poppins-text-16 dropdown-item", rel: 'nofollow' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="navigation-border-bottom">
+
+      </div>
+    </div>
+
+    <% if @products.any? %>
+      <div id="products" class="inline product-listing" data-hook>
+        <% products.each do |product| %>
+          <div class="search-product">
+            <%= render partial: 'spree/shared/standard_product_card', locals: { product: product } %>
+          </div>
+        <% end %>
+        <% reset_cycle("classes") %>
+      </div>
+
+      <div id="search-section">
+        <%= paginate @products, theme: 'ag_pagination', left: 3, right: 1, window: 1, remote: false %>
+      </div>
+    <% elsif @staff_pick_product_cards.any? %>
+      <div class="our-pick"> Our Picks </div>
+      <div id="products" class="inline product-listing" data-hook>
+        <% @staff_pick_product_cards.each do |product| %>
+          <div class="search-product">
+            <%= render partial: 'spree/shared/standard_product_card', locals: { product: product } %>
+          </div>
+        <% end %>
+        <% reset_cycle("classes") %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%= render partial: 'spree/shared/sorting_modal', locals: { search_page: true } %>
+
+# touched on 2025-05-22T21:19:08.152829Z
+# touched on 2025-05-22T23:03:41.169331Z
