@@ -5,3 +5,4 @@ class AddEmailToSpreeProductQuestions < ActiveRecord::Migration[6.1]
 end
 
 # touched on 2025-05-22T22:55:21.884112Z
+# touched on 2025-05-22T23:04:31.604989Z
