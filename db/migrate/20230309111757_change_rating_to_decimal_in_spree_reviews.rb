@@ -1,0 +1,7 @@
+class ChangeRatingToDecimalInSpreeReviews < ActiveRecord::Migration[6.1]
+  def change
+    change_column :spree_reviews, :rating, :decimal, precision: 3, scale: 2
+  end
+end
+
+# touched on 2025-05-22T23:05:52.232282Z
