@@ -1,0 +1,54 @@
+<%= form_for @order, url: update_cart_path, remote: true, html: { id: 'update-cart-slider' } do |order_form| %>
+  <div class="list-items" style="display:<%= "#{order_form.object.line_items.present? ? '' : 'none'}" %>">
+    <div class="scrollable product-items-list slider-items">
+      <%= render partial: 'spree/shared/line_item_navbar_v2' , collection: order_form.object.line_items, locals: {order_form: order_form, quantity_change: true } %>
+      <div class="overlay"></div>
+    </div>
+
+    <div class="slider-line"></div>
+
+    <div class="cart-summary">
+      <div class="order-summary">
+        <div class="content">
+          <div class="d-flex justify-content-between poppins-text-20 subtotal">
+            <p class="p-0 mb-0 poppins-bold-text-16 subtotal-text"> Subtotal: </p>
+            <p class="p-0 mb-0 poppins-bold-text-32 subtotal-price"><%= order_form.object.display_item_total %></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-center slider-buttons">
+        <button type="button" class="keep-shopping poppins-bold-text-16" data-dismiss="modal"> Keep Shopping </button>
+        <% if request&.path&.include?('chuckwagon_dvd') || request&.referrer&.include?('chuckwagon_dvd') %>
+          <%= link_to 'Go to Cart', update_upsell_modal_path(upsell: true), class: "clear-link begin-checkout poppins-bold-text-16", id: "open-upsell-modal", remote: true %>
+        <% else %>
+          <a href="<%= spree::cart_path %>" class="begin-checkout poppins-bold-text-16"> Go to Cart </a>
+        <% end %>
+      </div>
+
+      <div class="poppins-bold-text-16 empty-cart text-center">
+        EMPTY MY CART
+      </div>
+
+      <div class="empty-cart-link poppins-bold-text-16 empty-cart-confirm text-center">
+         <%= link_to 'YES, EMPTY MY CART', empty_cart_path, method: :put, class: 'clear-link', remote: true %>
+      </div>
+    </div>
+  </div>
+  <div class="empty-cart-slider text-center hide-items" style="display:<%= "#{order_form.object.line_items.present? ? 'none' : ''}" %>">
+    <%= image_tag 'slider-cart-icon.svg', class: 'cart-image' %>
+    <h1 class="text-center lexend-heading-32 main-heading"> Whoops! </h1>
+
+    <div class="poppins-text-16 text-center empty-cart-text">
+      <div class="poppins-bold-text-16"> It looks like there’s nothing in your cart yet. </div>
+      <div class="paragrapgh"> Add products to your cart and we’ll show them to you here, along with a running total of what you’re going to spend. </div>
+    </div>
+
+    <div class="justify-content-center slider-buttons">
+      <button type="button" class="keep-shopping-empty poppins-bold-text-16" data-dismiss="modal"> Keep Shopping </button>
+    </div>
+  </div>
+<% end %>
+
+# touched on 2025-05-22T20:38:41.166622Z
+# touched on 2025-05-22T23:08:27.765299Z
