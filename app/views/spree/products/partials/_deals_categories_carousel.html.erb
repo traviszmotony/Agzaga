@@ -1,0 +1,10 @@
+<%= form_tag spree::deals_products_url, method: :get, local: true do %>
+<div class="deals-categories-carousel">
+  <%= render 'spree/products/partials/categories_modal' %>
+  <%= render 'spree/products/partials/departments_modal' %>
+  <%= render 'spree/products/partials/price_carousel_modal'%>
+  <%= render 'spree/products/partials/sort_by_modal'%>
+</div>
+<% end %>
+
+# touched on 2025-05-22T23:08:56.397887Z
