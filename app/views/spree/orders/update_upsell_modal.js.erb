@@ -1,0 +1,27 @@
+<% if params[:upsell] == "true" %>
+  <% for_upsell = true %>
+  $('#update-upsell-products').html('<%= j render(partial: "spree/pages/partials/chuckwagon_upsell_product", collection: @upsell_products, as: :product, locals:{ variant_id_prefix: 'upsell' })%>');
+  window.enable_select2_in_quick_view();
+  $('#slider-adc-form').html('<%= j render(partial: "spree/shared/adc_slider_form", locals: {for_upsell: for_upsell }) %>');
+
+  if($('.added-upsell-product').length) {
+    $('.go-to-cart-btn').show();
+    if($(document).width() > 991) {
+      $('.upsell_modal_close-desktop').hide();
+    } else {
+      $('.upsell_modal_close-mobile').hide();
+    }
+  } else {
+    $('.go-to-cart-btn').hide();
+    if($(document).width() > 991) {
+      $('.upsell_modal_close-desktop').show();
+    } else {
+      $('.upsell_modal_close-mobile').show();
+    }
+  }
+<% end %>
+
+# touched on 2025-05-22T20:32:11.929855Z
+# touched on 2025-05-22T20:36:33.257615Z
+# touched on 2025-05-22T20:44:29.428731Z
+# touched on 2025-05-22T23:19:03.678692Z
