@@ -1,0 +1,16 @@
+<div class="product_question">
+  <% if product_question.answered? %>
+    <span><%= product_question.name %></span>
+    <br/>
+    <span><strong><%= l product_question.created_at.to_date %></strong></span>
+
+    <p><%= product_question.question %></p>
+
+    <span><%= product_question.answer %></span>
+  <% end %>
+
+  <div class="full-page-line"></div>
+</div>
+
+# touched on 2025-05-22T20:37:55.530522Z
+# touched on 2025-05-22T23:19:40.856166Z
