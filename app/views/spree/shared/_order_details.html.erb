@@ -1,0 +1,109 @@
+<div class="collapse" id="demo">
+
+  <div class="d-flex justify-content-between order-summary ">
+    <div class="draught-h2 order-summary-title">ORDER SUMMARY</div>
+    <div class="poppins-text-16 view-your-orders mb-0">VIEW YOUR ORDERS</div>
+  </div>
+
+  <div class="product-items-list p-0 m-0">
+    <%= render partial: 'spree/orders/line_item' , collection: order.line_items, locals: { order_form: order, quantity_change: false }  %>
+  </div>
+
+  <div class="order-summary-detail col-lg-8 col-12">
+    <div class="grey-line"></div>
+
+    <div class="order-summary-detail-content">
+
+      <div class="d-flex justify-content-between poppins-text-20 subtotal">
+        <p class="p-0 mb-0"><%= t('spree.subtotal') %></p>
+        <p class="p-0 mb-0 subtotal-price"><%= order.display_item_total %></p>
+      </div>
+
+      <% if order.line_item_adjustments.exists? %>
+
+        <% order.line_item_adjustments.promotion.eligible.group_by(&:label).each do |label, adjustments| %>
+          <div class="d-flex justify-content-between poppins-text-20 extra-charges">
+
+            <p class="p-0 mb-0">
+              <%=  t('spree.promotion') %>: <%= label %>
+            </p>
+
+            <p class="p-0 mb-0 charges pl-3">
+              <%= Spree::Money.new(adjustments.sum(&:amount), currency: order.currency) %>
+            </p>
+          </div>
+        <% end %>
+
+      <% end %>
+
+      <% order.shipments.group_by { |s| s.selected_shipping_rate.name }.each do |name, shipments| %>
+
+        <div class="d-flex justify-content-between poppins-text-20 extra-charges">
+
+          <p class="p-0 mb-0">
+            <%= t('spree.shipping') %>: <%= name %>
+          </p>
+
+          <p class="p-0 mb-0 pl-3">
+            <%= Spree::Money.new(shipments.sum(&:total_before_tax), currency: order.currency).to_html %>
+          </p>
+        </div>
+
+      <% end %>
+
+      <% if order.all_adjustments.tax.exists? %>
+        <% order.all_adjustments.tax.eligible.group_by(&:label).each do |label, adjustments| %>
+          <div class="d-flex justify-content-between poppins-text-20 extra-charges">
+
+            <p class="p-0 mb-0">
+              <%= t('spree.tax') %>: <%= label %>
+            </p>
+
+            <p class="p-0 mb-0 charges pl-3">
+              <%= Spree::Money.new(adjustments.sum(&:amount), currency: order.currency) %>
+            </p>
+          </div>
+        <% end %>
+
+      <% if order.total_applicable_store_credit > 0.0 %>
+        <div class="d-flex justify-content-between poppins-text-20 extra-charges">
+
+          <p class="p-0 mb-0">
+            <%= t('spree.store_credit.store_credit') %>:
+          </p>
+
+          <p class="p-0 mb-0 charges pl-3">
+            <%= order.display_total_applicable_store_credit.to_html %>
+          </p>
+        </div>
+      <% end %>
+
+      <% order.adjustments.eligible.each do |adjustment| %>
+        <% next if (adjustment.source_type == 'Spree::TaxRate') and (adjustment.amount == 0) %>
+          <div class="d-flex justify-content-between poppins-text-20 extra-charges">
+
+            <p class="p-0 mb-0">
+              <%= adjustment.label %>
+            </p>
+
+            <p class="p-0 mb-0 charges pl-3">
+              <%= adjustment.display_amount.to_html %>
+            </p>
+          </div>
+        <% end %>
+      <% end %>
+
+      <div class="d-flex justify-content-between total">
+        <p class="p-0 mb-0 poppins-h3 total-text">Total</p>
+
+        <p class="p-0 mb-0 poppins-h4 total-price">
+          <%= order.display_order_total_after_store_credit.to_html %>
+        </p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+# touched on 2025-05-22T19:14:48.409574Z
+# touched on 2025-05-22T23:19:46.076908Z
