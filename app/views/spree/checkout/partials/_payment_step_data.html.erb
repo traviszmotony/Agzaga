@@ -1,0 +1,48 @@
+<div class="checkout-step-group">
+  <div class="step-header">
+    <span class="step-number lexend-h4"><%= image_tag 'green_check_mark.svg'%></span>
+    <span class="step-name lexend-h4">Payment</span>
+
+    <span class="d-lg-block d-none poppins-text-16 clear-link edit-personal-info">
+      <a class="clear-link" href="<%= checkout_state_path(:payment) %>" data-remote="true">Edit</a>
+    </span>
+
+    <span class="edit-button d-lg-none d-block poppins-text-16 clear-link edit-personal-info">
+      <a class="clear-link" href="<%= checkout_state_path(:payment) %>" data-remote="true"><%= image_tag 'edit-white-icon.svg'%></a>
+    </span>
+  </div>
+
+  <div class="step-content">
+    <div class="poppins-body-16 bold details-heading">
+      Payment Method
+    </div>
+
+    <div class="text-left">
+      <% store_credit = @order.payments.where(source_type: "Spree::StoreCredit")&.last&.source %>
+      <% card = @order.payments.where(source_type: "Spree::CreditCard")&.last&.source %>
+      <% promo = @order.all_adjustments.nonzero.promotion.present? %>
+      <% shipment_promo = @order.shipment_adjustments.promotion.present? %>
+
+      <% if card.present? && card.is_a?(Spree::CreditCard) %>
+        <div class="poppins-text-16 details-text">
+          <span><%= card.name%></span>
+        </div>
+
+        <div class="poppins-text-16 details-text">
+          <span>••••••••<%= card.last_digits%></span>&nbsp;
+          <span><%= "#{card.month}/#{card.year.to_s.last(2)}" %></span>
+        </div>
+      <% end %>
+
+      <% if store_credit.present? && store_credit.is_a?(Spree::StoreCredit) %>
+        <div class="poppins-text-16 details-text">
+          Store Credit Applied: <%= Spree::Money.new( @order.total_applicable_store_credit, currency: @order.currency ).to_html %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+# touched on 2025-05-22T19:11:39.972536Z
+# touched on 2025-05-22T20:33:09.996835Z
+# touched on 2025-05-22T23:21:27.946842Z
