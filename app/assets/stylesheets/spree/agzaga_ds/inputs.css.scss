@@ -1,0 +1,96 @@
+@import "spree/agzaga_ds/typography";
+@each $inputname, $value in $inputs {
+  .ag-input-#{$inputname} {
+    .ag-input-group-box {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      border-radius: $input-group-border-radius;
+      background: $input-group-background;
+      font-size: $input-font-size;
+      .ag-input-icon-append {
+        padding: 10px;
+      }
+
+      input.ag-input-field {
+        width: 100%;
+        border: 0;
+        padding: 10px;
+        border-radius: map-get($value, input_border_value);
+        height: $input-field-height;
+      }
+
+      &:hover {
+        caret-color: map-get($value, hover_border);
+      }
+    }
+
+    .ag-input-group-disable {
+      background: $input-group-background;
+    }
+
+    .ag-input-label {
+      @extend .ag-p-sm;
+      margin-bottom: 4px;
+    }
+
+    .ag-input-helper-text {
+      @extend .ag-p-sm;
+      color: map-get($value, helper_txt_color);
+      margin-top: 8px;
+    }
+  }
+}
+
+.ag-input-neutral {
+  .ag-input-group-box {
+    border: 1px solid var(--palette-neutral-300);
+    &:hover {
+      border: 1px solid var(--palette-primary-300);
+      box-shadow: 0px 0px 0px 4px $neutral-input-shadow;
+    }
+
+    &:focus-within {
+      border: 1px solid var(--palette-primary-300);
+      box-shadow: 0px 0px 0px 4px $neutral-input-shadow;
+    }
+
+  }
+}
+
+.ag-input-destructive {
+  .ag-input-group-box {
+    border: 1px solid var(--palette-destructive-300);
+    &:hover {
+      box-shadow: 0px 0px 0px 4px $destructive-input-shadow;
+    }
+
+    &:focus-within {
+      border: 1px solid var(--palette-destructive-300);
+      box-shadow: 0px 0px 0px 4px $destructive-input-shadow;
+    }
+  }
+}
+
+.ag-input-line-neutral {
+  .ag-input-group-box {
+    border-bottom: 1px solid var(--palette-primary-200);
+    &:hover {
+      border-bottom: 1px solid var(--palette-primary-200);
+      box-shadow: 0 8px 8px -4px $neutral-input-shadow;
+    }
+  }
+}
+
+.ag-input-line-destructive {
+  .ag-input-group-box {
+    border-bottom: 1px solid var(--palette-destructive-200);
+    &:hover {
+      border-bottom: 1px solid var(--palette-destructive-200);
+      box-shadow: 0 8px 8px -4px $destructive-input-shadow;
+    }
+  }
+}
+
+# touched on 2025-05-22T21:57:26.352942Z
+# touched on 2025-05-22T23:21:36.539660Z
