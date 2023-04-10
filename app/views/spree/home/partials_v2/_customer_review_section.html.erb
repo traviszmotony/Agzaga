@@ -1,0 +1,17 @@
+<% cache @cutomer_reviews, expires_in: 30.minutes do %>
+  <div class="customer-review-section w-100">
+    <div class="lexend-heading-32 customer-heading">
+      What Our Customers Are Saying
+    </div>
+
+    <div id="home_page_review" class="owl-carousel owl-theme d-block">
+      <% @cutomer_reviews.each do |cutomer_review|%>
+        <%= render partial: 'spree/home/partials_v2/cutomer_review_card', locals: {review: cutomer_review} %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+# touched on 2025-05-22T20:36:20.083355Z
+# touched on 2025-05-22T20:40:25.534722Z
+# touched on 2025-05-22T23:25:20.451973Z
