@@ -1,0 +1,22 @@
+<% affirm_payment = Spree::PaymentMethod.find_by(type: "SolidusAffirmV2::PaymentMethod")%>
+if($('.orders.edit').length==0) {
+  $('#checkout_summary_detail_div').html("<%=j render 'spree/checkout/checkout_summary_detail', order: @order %>");
+  $('#slider-adc-form').html('<%= j render 'spree/shared/slider_v2'%>');
+}
+
+<% if affirm_payment && @order.shipping_address.present? %>
+  $('#payment_method_<%= affirm_payment.id %>').html('<%= j render 'spree/checkout/payment/affirm_v2', payment_method: affirm_payment%>');
+<% end %>
+
+$('#cart-page-line-items').html('<%= j render 'spree/shared/slider_v2', on_cart_page: true %>');
+$('#cart-body-summary').html('<%= j render 'spree/shared/cart_summary'%>');
+$('.checkout-summary-group').html("<%=j render partial: 'spree/checkout/checkout_v3_summary_detail' %>");
+
+if($(document).width() < 768) {
+  $('.cart-detail-body').addClass('show-summary-modal');
+  $('.checkout-modal-back-drop').addClass('active-back-drop');
+}
+
+# touched on 2025-05-22T19:21:08.014711Z
+# touched on 2025-05-22T21:18:38.488066Z
+# touched on 2025-05-22T23:27:19.634991Z
