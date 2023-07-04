@@ -1,0 +1,57 @@
+  <div class="payment-method">
+    <div class="poppins-bold-text-16 group-heading">
+      Select Payment Method
+    </div>
+
+    <div class="d-flex w-100">
+    <label class="poppins-text-16 custom-field field-required name-field">
+      <input required="required" class="form-control custom-field-input" type="text" value="Jacob Watson" name="order[email]" id="order_email">
+      <span class="placeholder" style="display: none;">Name on Card</span>
+      <div class="invalid-feedback text-left">
+        Please enter a valid name.
+      </div>
+    </label>
+
+      <label class="poppins-text-16 custom-field field-required name-field mr-0" id="bphone">
+        <input class="form-control custom-field-input required" required="required" autocomplete="billing home tel" type="tel" value="1234-4567-7890-0000" name="order[bill_address_attributes][phone]" id="order_bill_address_attributes_phone">
+        <span class="placeholder" style="display: none;">Phone Number</span>
+        <div class="invalid-feedback text-left">
+          This field is required
+        </div>
+      </label>
+    </div>
+    <div class="d-flex w-100">
+
+      <label class="poppins-text-16 custom-field field-required city-area" id="bcity">
+        <input class="form-control custom-field-input required" autocomplete="billing address-level2" required="required" type="text" value="580" name="order[bill_address_attributes][city]" id="order_bill_address_attributes_city">
+        <span class="placeholder" style="display: none;">City</span>
+        <div class="invalid-feedback text-left">
+          This field is required
+        </div>
+      </label>
+
+      <label class="poppins-text-16 custom-field field-required city-area" id="bzipcode">
+        <input class="form-control custom-field-input required" autocomplete="billing postal-code" required="required" type="text" value="10/2022" name="order[bill_address_attributes][zipcode]" id="order_bill_address_attributes_zipcode">
+        <span class="placeholder" style="display: none;">Card Expiry Date</span>
+        <div class="invalid-feedback text-left">
+          This field is required
+        </div>
+      </label>
+
+      <label class="poppins-text-16 custom-field field-required city-area mr-0" id="bzipcode">
+        <input class="form-control custom-field-input required" autocomplete="billing postal-code" required="required" type="number" value="65301" name="order[bill_address_attributes][zipcode]" id="order_bill_address_attributes_zipcode">
+        <span class="placeholder" style="display: none;">Card Pin Code</span>
+        <div class="invalid-feedback text-left">
+          This field is required
+        </div>
+      </label>
+
+    </div>
+
+    <div class="btn-section">
+      <%= submit_tag 'Save Card', class: "save-btn clear-link" %>
+      <script>Spree.disableSaveOnClick();</script>
+    </div>
+  </div>
+
+# touched on 2025-05-22T23:28:02.017916Z
