@@ -1,0 +1,37 @@
+<% expiry_card = Date.new(wallet_payment_source.payment_source.year.to_i, wallet_payment_source.payment_source.month.to_i) < Date.today  %>
+<label class="m-0 expire-card-group <%= 'disable' if expiry_card == true %>">
+
+  <div id="<%= dom_id(wallet_payment_source, 'spree')%>" class="grey-panel <%= 'disable-border' if expiry_card == true %>">
+    <div class="radio-block d-flex">
+      <%= radio_button_tag "order[wallet_payment_source_id]", wallet_payment_source.id, default, class: "black-radio existing-cc-radio #{'d-none' if expiry_card == true }", id: "existing-cc-radio", disabled: true %>
+    </div>
+
+    <div class="card-info d-flex">
+      <div class="card-holder-name poppins-text-16 <%= 'disable' if expiry_card == true %>">
+        <%= wallet_payment_source.payment_source.name %>
+      </div>
+
+      <% last_digits = wallet_payment_source.payment_source.display_number.split("-")[3] %>
+      <div class="card-number card-holder-name poppins-text-16 <%= 'disable' if expiry_card == true %>">
+        ••••••••<%= last_digits %>
+      </div>
+
+      <div class="card-exp-date card-holder-name poppins-text-16 <%= 'disable' if expiry_card == true %>">
+        <%= wallet_payment_source.payment_source.month %>/<%= wallet_payment_source.payment_source.year %>
+      </div>
+    </div>
+    <div class="d-flex action-icon poppins-text-16 ml-auto">
+      <div class="card-error <%= 'd-block' if expiry_card == true %>">Card Expired </div>
+      <%= link_to remove_payment_source_path(params: {order: {wallet_payment_source_id: wallet_payment_source.id}, delete_card: 'yes'}), method: :post, remote: :true do %>
+        <% if expiry_card == true %>
+          <%= image_tag 'bin_hover.svg', alt: "submit" %>
+        <% else %>
+          <%= image_tag 'bin.svg', alt: "submit" %>
+        <% end %>
+      <% end %>
+    </div>
+
+  </div>
+</label>
+
+# touched on 2025-05-22T23:29:07.646334Z
