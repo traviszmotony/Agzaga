@@ -1,0 +1,86 @@
+
+<% content_for :page_title do %>
+  Interested Chapters
+<% end %>
+
+<% content_for :page_actions do %>
+  <li>
+    <%= link_to 'Export Interested Chapters', main_app.export_interested_chapters_path, class: 'btn btn-primary' %>
+  </li>
+<% end %>
+
+<%= paginate @interested_chapters, theme: "solidus_admin" %>
+
+<% if @interested_chapters.any? %>
+  <table class="index align-left sortable inline-editable-table mb-5 mt-5" data-sortable-link="<%= update_positions_admin_home_page_reviews_path %>">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>State</th>
+        <th>Postal Code</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%- @interested_chapters.each do |interested_chapter| -%>
+        <tr id="<%= spree_dom_id interested_chapter %>">
+          <td>
+            <%= interested_chapter.id %>
+          </td>
+
+          <td>
+            <%= interested_chapter.name %>
+          </td>
+
+          <td>
+            <%= interested_chapter.first_name %>
+          </td>
+
+          <td>
+            <%= interested_chapter.last_name %>
+          </td>
+
+          <td>
+            <%= interested_chapter.email %>
+          </td>
+
+          <td>
+            <%= interested_chapter.phone_number %>
+          </td>
+
+          <td>
+            <%= interested_chapter.state %>
+          </td>
+
+          <td>
+            <%= interested_chapter.postal_code %>
+          </td>
+
+          <td class='actions align-center' data-hook="admin_orders_index_row_actions">
+            <%= link_to_edit_url edit_admin_interested_chapter_path(interested_chapter), title: "admin_edit_#{dom_id(interested_chapter)}", no_text: true %>
+          </td>
+
+          <td class='actions align-center' data-hook="admin_orders_index_row_actions">
+            <%= link_to_delete interested_chapter, url: admin_interested_chapter_path(interested_chapter), no_text: true %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+
+  <div class="no-objects-found">
+    <%= I18n.t("spree.no_results") %>
+  </div>
+<% end %>
+
+<%= paginate @interested_chapters, theme: "solidus_admin" %>
+
+# touched on 2025-05-22T23:30:36.978143Z
