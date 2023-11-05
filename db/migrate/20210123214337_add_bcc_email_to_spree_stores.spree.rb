@@ -8,3 +8,4 @@ class AddBccEmailToSpreeStores < ActiveRecord::Migration[5.2]
 end
 
 # touched on 2025-05-22T23:30:29.000625Z
+# touched on 2025-05-22T23:30:55.198931Z
