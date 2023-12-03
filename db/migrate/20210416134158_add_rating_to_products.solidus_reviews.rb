@@ -24,3 +24,4 @@ class AddRatingToProducts < SolidusSupport::Migration[4.2]
 end
 
 # touched on 2025-05-22T23:01:19.887435Z
+# touched on 2025-05-22T23:37:15.668706Z
