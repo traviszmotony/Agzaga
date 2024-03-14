@@ -1,0 +1,19 @@
+var product_cards = []
+<% @product_cards.each do |product| %>
+  product_cards.push({
+    card: "<%= j render 'spree/shared/standard_product_card', product: product %>",
+    form: "<%= j render 'spree/pages/partials/cart_flag_form', product: product %>"
+  });
+<% end %>
+
+var sliderCards =  $('#briddon_usa_flag_products').find($('.slider-card[data-tab="<%= params[:tab] %>"]'));
+
+sliderCards.each(function(index){
+  var productCard = product_cards[index];
+  $(this).html(productCard.card + productCard.form).data('loaded', true);
+});
+
+# touched on 2025-05-22T20:41:04.645991Z
+# touched on 2025-05-22T21:30:28.108972Z
+# touched on 2025-05-22T21:30:50.322015Z
+# touched on 2025-05-22T23:39:40.524740Z
