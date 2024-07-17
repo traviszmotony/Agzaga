@@ -1,0 +1,40 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require bootstrap
+ *= require_self
+*/
+ @import "spree/base_v2.css";
+ @import "pages.css";
+ @import "fonts.css";
+ @import "flash.css";
+ @import "errors.css";
+ @import "spree/agzaga_ds/agzaga_variables";
+ @import "spree/agzaga_ds/button_group.css";
+ @import "spree/agzaga_ds/buttons";
+ @import "spree/agzaga_ds/badges.css";
+ @import "spree/home_page.css";
+ @import "home_page_review.css";
+ @import "spree/product_cards_v2.css";
+ @import "spree/header_v2.css";
+ @import "spree/footer_v2.css";
+ @import "spree/index_v2.css";
+ @import "spree/faq_page.css";
+ @import "spree/agzaga_ds/form_controls.css";
+ @import "cart_v2.css";
+ @import "slider_v2.css";
+ @import "standard_product_card.css";
+ @import "search_card.css";
+ @import "spree/cards_group";
+
+# touched on 2025-05-22T20:40:25.533627Z
+# touched on 2025-05-22T23:45:47.162930Z
