@@ -1,0 +1,23 @@
+<% products ||= nil %>
+<% heading_text ||= "Products" %>
+
+<div class="data-container featured-carousel">
+  <h2 class="section-heading"><%= heading_text %></h2>
+
+  <div class="container-fluid p-0">
+    <div id="addition-carousel" class="owl-carousel owl-theme home-page-slider">
+      <% products.each do |product| %>
+        <div class="item">
+          <a href="<%= product_path(product) %>" class="clear-link" data-turbolinks="false">
+            <%= render partial: 'spree/shared/standard_product_card', locals: { product: product } %>
+          </a>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+# touched on 2025-05-22T19:24:43.391400Z
+# touched on 2025-05-22T20:34:18.787586Z
+# touched on 2025-05-22T20:41:36.629238Z
+# touched on 2025-05-22T23:46:25.075928Z
