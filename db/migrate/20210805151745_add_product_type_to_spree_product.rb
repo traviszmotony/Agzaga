@@ -6,3 +6,4 @@ class AddProductTypeToSpreeProduct < ActiveRecord::Migration[6.1]
 end
 
 # touched on 2025-05-22T23:38:34.875592Z
+# touched on 2025-05-22T23:47:34.658136Z
