@@ -19,3 +19,5 @@ WHERE "spree_prices"."deleted_at" IS NULL AND "spree_variants"."id" = "spree_pri
 # touched on 2025-05-22T22:34:09.335460Z
 # touched on 2025-05-22T22:43:39.233581Z
 # touched on 2025-05-22T22:45:47.784823Z
+# touched on 2025-05-22T23:19:40.858200Z
+# touched on 2025-05-22T23:22:26.194534Z

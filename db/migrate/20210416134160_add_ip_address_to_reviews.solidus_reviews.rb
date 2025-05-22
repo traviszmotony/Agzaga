@@ -12,3 +12,4 @@ class AddIpAddressToReviews < SolidusSupport::Migration[4.2]
 end
 
 # touched on 2025-05-22T23:06:01.614521Z
+# touched on 2025-05-22T23:18:36.124486Z

@@ -1,0 +1,18 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require spree/frontend
+ *= require_self
+ *= require_tree .
+ *= require spree/frontend/solidus_reviews
+ *= require spree/frontend/solidus_favorites
+ *= require spree/frontend/solidus_sale_prices
+ *= require spree/frontend/solidus_affirm_v2
+ *= require spree/frontend/solidus_paypal_commerce_platform
+*/
+
+# touched on 2025-05-22T19:10:36.872362Z
+# touched on 2025-05-22T19:17:34.171774Z
+# touched on 2025-05-22T23:18:36.127970Z

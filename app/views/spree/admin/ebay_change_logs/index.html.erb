@@ -1,0 +1,36 @@
+<% admin_layout "full-width" %>
+
+<% admin_breadcrumb(plural_resource_name(Spree::NetSuiteLog)) %>
+
+<table class="index" width="100%" id="listing_orders" data-hook>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>SKU</th>
+      <th>Field</th>
+      <th>Old Value</th>
+      <th>New Value</th>
+      <th>Date Time</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ebay_change_logs.each do |log| %>
+      <tr>
+        <td><%= log.id %></td>
+        <td><%= log.sku %></td>
+        <td><%= log.field_name %></td>
+        <td><%= log.old_value %></td>
+        <td><%= log.new_value %></td>
+        <td><%= log.created_at.in_time_zone('Eastern Time (US & Canada)').strftime("%m-%d-%Y %H:%M:%S %Z") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @ebay_change_logs, theme: "solidus_admin" %>
+
+# touched on 2025-05-22T19:14:50.585214Z
+# touched on 2025-05-22T19:16:11.207150Z
+# touched on 2025-05-22T23:20:04.074745Z
+# touched on 2025-05-22T23:26:26.183180Z

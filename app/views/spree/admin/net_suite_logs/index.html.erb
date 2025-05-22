@@ -1,0 +1,32 @@
+<% admin_layout "full-width" %>
+
+<% admin_breadcrumb(plural_resource_name(Spree::NetSuiteLog)) %>
+
+<table class="index" width="100%" id="listing_orders" data-hook>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Order Number</th>
+      <th>Status code</th>
+      <th>Response</th>
+      <th>Created at</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @logs.each do |log| %>
+      <tr>
+        <td><%= log.id %></td>
+        <td><%= log.order.present? ? link_to(log.order.number, edit_admin_order_path(log.order.number)) : '' %></td>
+        <td><%= log.status_code %></td>
+        <td><%= log.response %></td>
+        <td><%= log.created_at.in_time_zone('Eastern Time (US & Canada)').strftime("%m-%d-%Y %H:%M:%S %Z") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @logs, theme: "solidus_admin" %>
+
+# touched on 2025-05-22T20:38:05.167695Z
+# touched on 2025-05-22T23:29:13.045055Z

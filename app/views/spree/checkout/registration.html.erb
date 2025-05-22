@@ -1,0 +1,56 @@
+<div class="data-container">
+  <%= render partial: 'spree/shared/error_messages', locals: { target: @user } %>
+  <h1 class="draught-textured-h1 main-heading">SIGN UP FOR THE BEST DEALS IN AG</h1>
+
+  <div id="registration" class="d-md-flex" data-hook>
+    <div id="account" class="options-group user-login">
+      <%= render template: 'spree/user_sessions/new', locals: { checkout:true } %>
+    </div>
+
+    <div class="other-options-group">
+
+      <div id="user-registration" data-hook class="options-group user-registration">
+        <%= form_for Spree::User.new, as: :spree_user, url: spree.registration_path do |f| %>
+
+          <h2 class="draught-h2">Create an account</h2>
+
+          <div data-hook="signup_inside_form">
+            <%= f.label :email, t('spree.email'), class: 'd-block poppins-text-16' %>
+            <%= f.email_field :email, class: 'input-field poppins-text-16' %>
+
+            <div id="password-credentials">
+              <%= f.label :password, t('spree.password'), class: 'd-block poppins-text-16' %>
+              <%= f.password_field :password, class: 'input-field poppins-text-16' %>
+
+              <%= f.label :password_confirmation, t('spree.confirm_password'), class: 'd-block poppins-text-16' %>
+              <%= f.password_field :password_confirmation, class: 'input-field poppins-text-16' %>
+            </div>
+
+            <%= f.submit 'Create Account', class: 'btn-gradient-orange poppins-text-16' %>
+          </div>
+        <% end %>
+      </div>
+
+      <% if Spree::Config[:allow_guest_checkout] %>
+        <div class="full-page-line"></div>
+        <p class="poppins-text-16 checkout-text">Need to check out fast?</p>
+
+        <div id="guest_checkout" data-hook class="options-group guest-login">
+
+          <h2 class="draught-h2">Continue as guest</h2>
+
+          <%= form_for @order, url: update_checkout_registration_path, method: :put, html: { id: 'checkout_form_registration' } do |f| %>
+
+            <%= f.label :email, t('spree.email'), class: 'd-block poppins-text-16' %>
+            <%= f.email_field :email, class: 'input-field poppins-text-16' %>
+            <span id='guest_error_message' class="error-message error-data"><%= flash[:registration_error] %></span>
+            <%= f.submit 'Continue as Guest', class: 'btn-gradient-orange poppins-text-16 checkout-as-guest' %>
+
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+# touched on 2025-05-22T23:25:41.494511Z

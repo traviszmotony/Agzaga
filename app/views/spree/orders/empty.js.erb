@@ -1,0 +1,9 @@
+<% if @order.errors.blank? %>
+  $('.cart-title').css("display", "none")
+  $('#slider-adc-form').html('<%= j render 'spree/shared/slider_v2'%>');
+
+  if (window.location.href.includes("custom_hose_generator") || window.location.href.includes("cart")) {
+  }
+<% end %>
+
+# touched on 2025-05-22T23:29:22.764401Z

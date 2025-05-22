@@ -1,0 +1,35 @@
+<div class="modal-header help-on-the-way">
+  <div class="modal-title">Help is on the Way!</div>
+
+  <div type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <%= image_tag("modal-close.svg") %>
+  </div>
+</div>
+
+<div class="modal-body help-on-the-way">
+  <div class="help-description">
+    Check your email to reset your password. If you don’t see it soon, check your spam folder or we can send another email.
+  </div>
+
+  <div class="back-to-login">
+    <%= button_tag class: 'back-to-login-btn login-btn ag-btn ag-btn-md ag-btn-primary' do %>
+      <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="back-icon">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M8.17128 14.7807C7.77466 15.1773 7.1316 15.1773 6.73497 14.7807L2.67247 10.7182C2.27584 10.3215 2.27584 9.67847 2.67247 9.28184L6.73497 5.21935C7.1316 4.82272 7.77465 4.82272 8.17128 5.21935C8.56791 5.61597 8.56791 6.25903 8.17128 6.65565L5.84256 8.98437L17.6094 8.98437C18.1703 8.98437 18.625 9.43908 18.625 10C18.625 10.5609 18.1703 11.0156 17.6094 11.0156L5.84256 11.0156L8.17128 13.3443C8.56791 13.741 8.56791 14.384 8.17128 14.7807Z" fill="white"/>
+      </svg>
+
+      Back to Login
+    <% end %>
+  </div>
+
+  <div class="separator">
+    <div class="separating-line">
+      <span class="text">Or</span>
+    </div>
+  </div>
+
+  <div class="sent-email">
+    <%= link_to 'Send Another Email', spree.reset_password_path(spree_user: {email: user_email}), method: :post, remote: true, class: 'email-btn' %>
+  </div>
+</div>
+
+# touched on 2025-05-22T23:19:46.080796Z

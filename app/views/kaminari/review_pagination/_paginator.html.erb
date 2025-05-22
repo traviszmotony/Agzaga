@@ -1,0 +1,9 @@
+<%= paginator.render do -%>
+  <nav class="review-pagination" role="navigation" aria-label="pager">
+    <% unless current_page.out_of_range? %>
+      <%= next_page_tag unless current_page.last? %>
+    <% end %>
+  </nav>
+<% end -%>
+
+# touched on 2025-05-22T23:28:49.608288Z

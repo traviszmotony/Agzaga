@@ -1,0 +1,16 @@
+<% admin_breadcrumb(link_to plural_resource_name(Spree::HelpCenter), spree.admin_help_centers_path) %>
+
+<h2>Edit FAQ</h2>
+<%= form_for [:admin, @faq] do |f| %>
+
+  <%= render partial: 'form', locals: { f: f } %>
+  <fieldset class="no-border-top">
+    <br>
+    <div class="filter-actions actions" data-hook="buttons">
+      <%= f.submit t('spree.actions.update'), class: 'btn btn-primary' %>
+    </div>
+  </fieldset>
+<% end %>
+
+# touched on 2025-05-22T21:51:11.892096Z
+# touched on 2025-05-22T23:27:43.977674Z

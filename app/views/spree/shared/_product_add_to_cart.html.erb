@@ -1,0 +1,55 @@
+<div class="d-none" id ="show_add_to_cart" data-toggle= "modal", data-target= ".add_to_cart_modal">
+  open modal
+</div>
+
+<div
+    class="modal add_to_cart_modal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true"
+  >
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content product-review-modal-content">
+      <div class="modal-header">
+        <div class="modal-title">
+          <div class="poppins-bold-text-24 main-heading">Added to your cart!</div>
+        </div>
+        <div class="poppins-bold-text-12 d-md-block d-none close-modal review_modal_close" data-dismiss="modal"></div>
+      </div>
+
+      <div class="pick-up-alert alert alert-info">
+        Looks like you had some products in your cart that weren't eligible for event pick-up, but don't worry—we've removed them for you. Please complete your pick-up order first, then you can place a separate order for anything you'd like shipped.
+      </div>
+
+      <div class="modal-body">
+        <div class="product_modal-info">
+          <div class="image-container">
+          </div>
+
+          <div class="product_detail">
+            <div class="poppins-text-16 product_modal_name">Bridon Integra Blue/Green Net Wrap - 40” x 9,840’</div>
+            <div class="poppins-bold-text-18 product_modal_price">59</div>
+          </div>
+        </div>
+        <div class="buttons_section">
+          <% if action_name != 'chuckwagon_dvd' %>
+            <a class="clear-link poppins-text-12 cart_btn" href="<%= spree::cart_path %>" data-turbolinks="false">
+              Go to Cart
+            </a>
+          <% else %>
+            <%= link_to 'Go to Cart', update_upsell_modal_path(upsell: true), class: "clear-link poppins-text-12 cart_btn", id: "open-upsell-modal", remote: true %>
+          <% end %>
+
+          <div class="separater d-md-block d-none">or</div>
+          <div class="clear-link shpng_btn" data-toggle= "modal", data-target= ".add_to_cart_modal">
+            Keep Shopping
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+# touched on 2025-05-22T19:10:20.396986Z
+# touched on 2025-05-22T23:26:26.187269Z
