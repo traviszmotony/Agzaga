@@ -1,0 +1,125 @@
+$black: #000000;
+$wheat: #F1B71C;
+$cloud: #FAFAFA;
+$white: #FFFFFF;
+$tire: #171717;
+$on_sale: #D52C2C;
+$emerald: #51C571;
+
+.products.index {
+  background: $cloud;
+  .product-search-page {
+    max-width: 1240px;
+    padding: 0;
+    text-align: left;
+    margin: 0 auto;
+
+    .breadcrumb-group {
+      margin-bottom: 33px;
+    }
+
+    .search-for {
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 20px;
+      margin-bottom: 8px;
+      color: var(--palette-neutral-600);
+    }
+
+    .search-product-keyword {
+      margin-bottom: 8px !important;
+
+      .no-result-section{
+        margin-bottom: 35px;
+
+        .no-result-found {
+          margin-bottom: 16px;
+        }
+
+        .no-result-text {
+          font-family: 'Poppins';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 18px;
+          line-height: 28px;
+          color: var(--palette-neutral-600);
+        }
+      }
+    }
+
+    .our-pick {
+      padding: 32px 0 8px 0;
+      font-family: 'Lexend';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 32px;
+      line-height: 40px;
+      color: var(--palette-shades-100);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .container-fluid {
+      .data-container {
+
+        .breadcrumb-group {
+          justify-content: space-between;
+          margin-bottom: 33px;
+
+          .back-btn {
+            .back-lbl {
+              display: inherit !important;
+            }
+          }
+
+          .search-for {
+            margin-bottom: 4px;
+          }
+        }
+
+        .sub-taxons-and-sort-group {
+          .search-product-keyword {
+            .category-count {
+              margin-left: 16px;
+            }
+
+            .no-result-section {
+              margin-bottom: 24px;
+
+              .no-result-found {
+                .no-result-heading {
+                  display: block;
+                  font-size: 18px;
+                  line-height: 24px;
+                  margin-bottom: 8px;
+                }
+              }
+
+              .no-result-text {
+                font-size: 14px;
+                line-height: 20px;
+              }
+            }
+          }
+        }
+
+        .our-pick {
+          padding: 16px 0 8px 0;
+          font-family: 'Lexend-medium';
+          font-size: 24px;
+          line-height: 32px;
+        }
+      }
+    }
+  }
+}
+
+.taxons.show {
+  .product-search-results-top {
+    display: none;
+  }
+}
+
+# touched on 2025-05-22T22:34:18.678712Z

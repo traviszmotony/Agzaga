@@ -1,0 +1,37 @@
+<% admin_breadcrumb("Facebook Catalog Manager") %>
+
+<% admin_layout "full-width" %>
+
+<div class="text-right">
+  <%= link_to 'Update Facebook Products Catalog', update_product_catalog_admin_facebook_api_logs_path, method: :post, class: 'btn btn-primary mb-3 p-3 font-weight-bold'%>
+</div>
+
+<h4 class="text-center mb-3">Facebook Catalog Update Requests Logs</h4>
+
+<table class="index" width="100%" id="listing_orders" data-hook>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Status code</th>
+      <th>Response</th>
+      <th>Created at</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @facebook_api_logs.each do |log| %>
+      <tr>
+        <td><%= log.id %></td>
+        <td><%= log.status_code %></td>
+        <td><%= log.response %></td>
+        <td><%= log.created_at.in_time_zone('Eastern Time (US & Canada)').strftime("%m-%d-%Y %H:%M:%S %Z") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @facebook_api_logs, theme: "solidus_admin" %>
+
+# touched on 2025-05-22T20:38:07.004230Z
+# touched on 2025-05-22T20:44:16.566760Z
+# touched on 2025-05-22T22:38:27.423965Z

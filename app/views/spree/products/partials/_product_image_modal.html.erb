@@ -1,0 +1,32 @@
+<% first_varient_id = @product&.variants&.first&.id %>
+
+<div class="modal fade" id="product-images-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+
+    <div class="modal-content">
+      <div class=" modal-data">
+        <div class="product-image-lg-group img-magnifier-container">
+          <% if  mobile_image?(product) %>
+            <img src="<%= asset_path( @product.gallery.images.where(alt: "mobile-image").first.url(:large) ) %>" id="product-image-lg-modal">
+          <% else %>
+            <img src="<%= asset_path( @product.gallery.images.first.url(:large) ) %>" id="product-image-lg-modal">
+          <% end %>
+          <div class="sale-tag"></div>
+        </div>
+
+        <div id="product-images-crousel-for-modal" class="owl-carousel owl-theme">
+          <% @product.gallery.images.each do |image| %>
+            <% if image.viewable_id == @product.master.id || image.viewable_id == first_varient_id  %>
+              <div class="item">
+                <%= image_tag image.url(:large)  %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+# touched on 2025-05-22T19:13:25.434113Z
+# touched on 2025-05-22T22:32:30.478839Z

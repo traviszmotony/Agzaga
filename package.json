@@ -1,0 +1,37 @@
+{
+  "name": "agazon",
+  "private": true,
+  "dependencies": {
+    "@algolia/autocomplete-js": "^1.5.1",
+    "@algolia/autocomplete-plugin-recent-searches": "^1.5.1",
+    "@popperjs/core": "^2.11.5",
+    "@rails/actioncable": "^6.0.0",
+    "@rails/activestorage": "^6.0.0",
+    "@rails/ujs": "^6.0.0",
+    "@rails/webpacker": "5.2.1",
+    "algoliasearch": "^4.11.0",
+    "animate.css": "^4.1.1",
+    "autocomplete.js": "^0.38.0",
+    "bootstrap": "^4.6.0",
+    "bootstrap-icons": "^1.3.0",
+    "cleave.js": "^1.6.0",
+    "flatpickr": "^4.6.9",
+    "jquery": "^3.5.1",
+    "lightgallery": "^1.10.0",
+    "lightslider": "^1.1.6",
+    "moment": "^2.29.1",
+    "moment-timezone": "^0.5.34",
+    "owl.carousel": "^2.3.4",
+    "popper.js": "^1.16.1",
+    "select2": "^4.1.0-rc.0",
+    "turbolinks": "^5.2.0"
+  },
+  "version": "0.1.0",
+  "devDependencies": {
+    "@types/cleave.js": "^1.4.4",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
+
+# touched on 2025-05-22T19:22:42.382024Z
+# touched on 2025-05-22T22:32:12.724121Z

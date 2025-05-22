@@ -1,0 +1,35 @@
+<div data-hook="admin_inside_faq_form">
+  <div class="row">
+    <div class="col-12" data-hook="admin_label_form_left">
+      <div id="editor" data-hook="admin_product_form_features">
+        <%= f.field_container :question do %>
+          <%= f.label :question %>
+          <%= f.text_area :question, {rows: "5", class: 'fullwidth', required: true} %>
+          <%= f.error_message_on :question %>
+        <% end %>
+      </div>
+
+      <div id="editor" data-hook="admin_product_form_features">
+        <%= f.field_container :answer do %>
+          <%= f.label :answer %>
+          <%= f.text_area :answer, {rows: "5", class: 'fullwidth', required: true} %>
+          <%= f.error_message_on :answer %>
+        <% end %>
+      </div>
+
+      <div data-hook="admin_product_form_promotionable">
+        <%= f.field_container :question_type do %>
+          <label>
+            Question Type:
+          </label>
+
+          <%= f.select :question_type, Spree::HelpCenter.question_types.keys.map {|key| [key.humanize, key]}, {include_blank: false}, class: "custom-select" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+# touched on 2025-05-22T19:24:56.233440Z
+# touched on 2025-05-22T20:38:43.742045Z
+# touched on 2025-05-22T22:38:45.490447Z

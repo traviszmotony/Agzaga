@@ -1,0 +1,243 @@
+<% @taxonomies ||= Spree::Taxonomy.where(visibility: true).includes(root: :children) %>
+<div id="header_v2">
+  <div class="container-fluid p-0">
+    <nav class="navbar_v2">
+      <div class="row ml-0 mr-0">
+
+        <div class="d-flex w-100 section-1 pl-0 pr-0">
+          <div class="triangle-0 coupon-section">
+            <div class="coupon-group display-hide" id="promocode">
+              <%= image_tag 'pre-header-token-icon.svg', alt: 'Coupon'%>
+              <span class="coupon-text">To get 5% off your first order, use the code
+                <span class="clipboard-btn" data-toggle="tooltip" data-placement="bottom">
+                 <span class="coupon-code p-0">FIRST5</span>
+                </span> at checkout
+              </span>
+            </div>
+            <div class="black-friday-group text-center animate__animated display-hide" id="blackfriday-countdown" >
+              <span class="deals-here-for text">4th of July GIVEAWAY! - click</span>
+
+              <span class="deals-here-for">
+                  <span class="black-friday"><a href="https://gleam.io/lyLr5/agzagas-get-your-flag-on-giveaway" target="_blank">HERE</a></span>
+                to enter
+              </span>
+            </div>
+          </div>
+
+          <div class="triangle-1 contact-section">
+            <span class="pre-nav-element">
+              <%= link_to spree::about_us_path, class: 'contact-text' do %>
+                <span>About Us</span>
+              <% end %>
+            </span>
+
+            <span class="pre-nav-element">
+              <%= link_to spree::faqs_page_path, class: 'contact-text' do %>
+                <span><%= image_tag 'help-icon.svg', alt: 'Agzaga-help' %></span>
+                <span>Help</span>
+              <% end %>
+            </span>
+
+            <% unless spree_user_signed_in? %>
+              <span class="vertical-separation"></span>
+
+              <span class="pre-nav-element">
+                  <div class="contact-text clear-link" data-toggle= "modal", data-target= ".checkout-login-modal">
+                    Join Us
+                  </div>
+              </span>
+
+              <span class="pre-nav-element">
+                <div class="contact-text clear-link" data-toggle= "modal", data-target= ".checkout-login-modal">
+                  Sign In
+                </div>
+              </span>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="w-100"></div>
+
+        <div class="d-flex w-100 justify-content-space-between section-2 pl-0 pr-0">
+          <div class="logo-section pr-0">
+            <%= link_to spree::root_url do %>
+              <%= image_tag 'pre-header-logo.svg', alt: 'Agzaga' %>
+            <% end %>
+          </div>
+
+          <div class="nav-search-box-v2">
+            <%= render partial: 'spree/shared/search_v2' %>
+          </div>
+
+          <div class="d-flex p-0 input-section">
+            <div class="login-section">
+
+              <div class="btn-usr" aria-expanded="false" <%= spree_user_signed_in? ? 'id="userDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"'.html_safe : 'data-toggle="modal" data-target= ".checkout-login-modal"'.html_safe %>>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" style="&#10;    fill: brown;&#10;">
+                  <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM7.07 18.28C7.5 17.38 10.12 16.5 12 16.5C13.88 16.5 16.51 17.38 16.93 18.28C15.57 19.36 13.86 20 12 20C10.14 20 8.43 19.36 7.07 18.28ZM18.36 16.83C16.93 15.09 13.46 14.5 12 14.5C10.54 14.5 7.07 15.09 5.64 16.83C4.57765 15.4438 4.00131 13.7464 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 13.82 19.38 15.49 18.36 16.83ZM12 6C10.06 6 8.5 7.56 8.5 9.5C8.5 11.44 10.06 13 12 13C13.94 13 15.5 11.44 15.5 9.5C15.5 7.56 13.94 6 12 6ZM12 11C11.17 11 10.5 10.33 10.5 9.5C10.5 8.67 11.17 8 12 8C12.83 8 13.5 8.67 13.5 9.5C13.5 10.33 12.83 11 12 11Z" fill="#1E1E1E" style="&#10;    fill: `;&#10;"/>
+                </svg>
+
+                <% unless spree_user_signed_in? %>
+                  <span class="join-us">Join Us</span>
+                <% end %>
+              </div>
+
+              <% if spree_user_signed_in? %>
+                <div class="dropdown-menu dropdown-menu-right user-dropdown" aria-labelledby="userDropdownMenuButton">
+                  <div class="arrow_box"></div>
+                  <a class="dropdown-item" href="<%= spree::account_path %>"><%= image_tag 'person-icon.svg', class: 'dropdown-profile-icons' %>Profile</a>
+                  <a class="dropdown-item" href="<%= spree::account_path + '#my-orders' %>"><%= image_tag 'wallet-icon.svg', class: 'dropdown-icons' %>Your Orders</a>
+                  <a class="dropdown-item" href="<%= spree::favorites_path %>"><%= image_tag 'heart-icon.svg', class: 'dropdown-icons' %>Favorites</a>
+                  <a class="dropdown-item" href="<%= spree::account_path %>"><%= image_tag 'setting-icon.svg', class: 'dropdown-icons' %>Account Settings</a>
+                  <a class="dropdown-item nav-signup-btn poppins-text-16 col-6" data-method="delete" href="<%= spree::logout_path %>"><%= image_tag 'logout-icon.svg', class: 'dropdown-icons' %>Log Out</a>
+                </div>
+
+              <% end %>
+            </div>
+
+            <div class= "favorite-section">
+              <a href="<%= spree::favorites_path %>" class="like-btn">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4.31802 6.31802C2.56066 8.07538 2.56066 10.9246 4.31802 12.682L12.0001 20.364L19.682 12.682C21.4393 10.9246 21.4393 8.07538 19.682 6.31802C17.9246 4.56066 15.0754 4.56066 13.318 6.31802L12.0001 7.63609L10.682 6.31802C8.92462 4.56066 6.07538 4.56066 4.31802 6.31802Z" stroke="#18181B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+                <span class="sec like-notification-badge"></span>
+              </a>
+            </div>
+
+            <div class="cart-section">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="cart-btn">
+                <path d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.70711 15.2929C4.07714 15.9229 4.52331 17 5.41421 17H17M17 17C15.8954 17 15 17.8954 15 19C15 20.1046 15.8954 21 17 21C18.1046 21 19 20.1046 19 19C19 17.8954 18.1046 17 17 17ZM9 19C9 20.1046 8.10457 21 7 21C5.89543 21 5 20.1046 5 19C5 17.8954 5.89543 17 7 17C8.10457 17 9 17.8954 9 19Z" stroke="#18181B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="w-100"></div>
+
+        <div class="col section-3">
+          <div class="col d-flex p-0 tabs-section">
+            <ul class="poppins-text-16 nav-list mb-0 ">
+              <li class="poppins-text-16 bold float-left deals-option <%= 'active' if  action_name == 'deals' %>">
+                <a class="nav-list-item clear-link deals-option-link" href="/products/deals">Deals</a>
+              </li>
+
+              <li class="poppins-text-16 bold float-left deals-option <%= 'active' if  action_name == 'deals' %>">
+                <a class="nav-list-item clear-link deals-option-link" href="<%= spree::gift_page_products_path%>">Gift Bundles</a>
+              </li>
+
+              <li class="float-left product-option btn-mega-dropdown">
+                <a class="product-btn clear-link nav-list-item <%= 'active-nav-text' if  request.url.include?(spree::product_categories_path) %>" href="<%= spree::product_categories_path %>">
+                  All Products
+                </a>
+              </li>
+
+              <% cache @taxonomies, expires_in: 30.minutes do %>
+                <% @taxonomies.each do |taxonomy|%>
+                  <li class="float-left product-option btn-mega-dropdown">
+                    <a class="product-btn clear-link nav-list-item <%= 'active-nav-text' if  request.url.include?(spree::nested_taxons_url(id: taxonomy.root.permalink)) %>"
+                       href="<%= spree::nested_taxons_url(id: taxonomy.root.permalink) %>">
+                      <%= taxonomy.name %>
+                    </a>
+                    <% if taxonomy.root.children.present? %>
+                      <div class="dropdown-menu mega-menu-dropdown">
+                        <div class="bg-mega-menu-dropdown">
+
+                          <div class="filter-section mega-list-wrap">
+                            <div class="mega-list-container">
+                              <div class="list-element-heading">Filtered By</div>
+                              <% taxonomy_id = taxonomy.taxons.first.permalink.downcase.split(' ').join('-')%>
+                              <%= link_to "Sale", nested_taxons_url(taxonomy_id, filter_by: 'Sale'), class: "list-element" %>
+                              <%= link_to "Staff Pick", nested_taxons_url(taxonomy_id, filter_by: 'Staff Pick'), class: "list-element" %>
+                              <%= link_to "Best Sellers", nested_taxons_url(taxonomy_id, filter_by: 'Best Sellers'), class: "list-element" %>
+                              <a class="list-element <%= 'active-nav-text' if  request.url.include?(spree::nested_taxons_url(taxonomy_id)) %>" href="<%= spree::nested_taxons_path(taxonomy_id) %>">
+                                  All <%= taxonomy.name %>
+                              </a>
+                            </div>
+                          </div>
+
+                          <div class="mega-list-wrap category-list-wrap">
+                            <div class="mega-list-container">
+                              <% is_custom_hose = taxonomy.name == 'Lawn & Garden' %>
+                              <% taxonomy.root.children.where(visibility: true).each do |staxon| %>
+                                <% staxon_childrens = staxon.children.where(visibility: true) %>
+                                <span class="navigation-dropdown-list">
+                                  <%= link_to 'Custom Length Hose', custom_hose_generator_index_path, class: 'list-element-heading category-last-element' if is_custom_hose %>
+                                  <% is_custom_hose = false %>
+                                  <a class="list-element-heading <%= 'active-nav-text' if  request.url.include?(spree::nested_taxons_url(staxon)) %> <%= 'category-last-element' unless staxon_childrens.any? %>" href="<%= spree::nested_taxons_path(staxon) %>">
+                                    <%= staxon.name %>
+                                  </a>
+
+                                  <% staxon_childrens.each do |sub_taxon| %>
+                                    <a class="list-element <%= 'category-last-element' if sub_taxon == staxon_childrens.last %>" href="<%= spree::nested_taxons_path(sub_taxon) %>"><%= sub_taxon.name %></a>
+                                  <% end %>
+                                </span>
+                              <% end %>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    <% end %>
+                  </li>
+                <% end %>
+              <% end %>
+            </ul>
+
+            <div class="store-credit-section product-option btn-mega-dropdown">
+              <% if spree_user_signed_in? %>
+                <% user_total_available_store_credit = spree_current_user&.total_available_store_credit.to_f %>
+                <div class="btn-dollar" id="dollarDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <% if (user_total_available_store_credit > 0.0) %>
+                    <%= image_tag("dollar-circle-filled.svg", class: 'green-dollar-icon btn-dollar-icon', alt: 'dollar icon') %>
+                  <% else %>
+                    <%= image_tag("grey-dollar-icon.svg", class: 'btn-dollar-icon', alt: 'dollar icon') %>
+                  <% end %>
+                </div>
+
+                <div class="dropdown-menu dropdown-menu-right dollar-dropdown" aria-labelledby="dollarDropdownMenuButton">
+                  <div class="arrow_box"></div>
+
+                  <div class="dropdown-item menu-heading poppins-bold-text-24"><%= "You've got cash!" if user_total_available_store_credit > 0.0 %> </div>
+
+                  <div class="dropdown-item poppins-text-16">Store credit balance</div>
+
+                  <div class="btn-cash <%= user_total_available_store_credit > 0.0 ? "have-cash" : "no-cash" %>" >
+                    <%= spree_current_user.display_total_available_store_credit %> Available
+                  </div>
+
+                  <% total_orders = spree_current_user&.orders&.complete&.count.to_i %>
+                  <% unless total_orders > 1 %>
+                    <div class="dropdown-divider"></div>
+
+                    <div><%= image_tag("percentage_icon_hex.svg",  class: 'cross-icon', alt: 'percentage icon') %></div>
+
+                    <% if total_orders == 0 %>
+                      <div class="mb-3">
+                        <div class="dropdown-item poppins-text-18 poppins-text-bold">5% off your first order</div>
+                        <div class="dropdown-item poppins-text-16 promo-details">Use code FIRST5 at checkout</div>
+                      </div>
+                    <% elsif total_orders == 1 %>
+                      <div class="mb-3">
+                        <div class="dropdown-item poppins-text-18 poppins-text-bold">5% off your next order</div>
+                        <div class="dropdown-item poppins-text-16 promo-details">Use code SECOND5 at checkout</div>
+                      </div>
+                    <% end %>
+                  <% end %>
+                </div>
+              <% end %>
+              </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <%= image_tag 'search_icon_hover.svg', class: 'd-none search_icon_hover' %>
+  <%= image_tag 'search_icon_v2_black.svg', class: 'd-none search_icon' %>
+  <%= render partial: 'spree/shared/navbar_mob_v2' %>
+  <%= render partial: 'spree/shared/navbar_mob_v2_modal' %>
+  <%= render partial: 'spree/shared/cart_slider_v2_modal' %>
+</div>
+
+# touched on 2025-05-22T19:24:36.093135Z
+# touched on 2025-05-22T20:37:26.252621Z
+# touched on 2025-05-22T22:38:39.340003Z

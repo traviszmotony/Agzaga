@@ -1,0 +1,28 @@
+<% admin_breadcrumb(link_to plural_resource_name(Spree::Product), spree.admin_products_path) %>
+<% admin_breadcrumb(plural_resource_name(Spree::Label)) %>
+
+
+<% content_for :page_actions do %>
+  <% if can?(:create, Spree::Label) %>
+    <li>
+      <%= link_to 'New Label', spree.new_admin_label_path, id: 'admin_new_label_link', class: 'btn btn-primary' %>
+    </li>
+  <% end %>
+<% end %>
+
+<% if @labels.any? %>
+<div id="list-labels" data-hook>
+  <%= render 'list' %>
+</div>
+<% else %>
+  <div class="no-objects-found">
+    <%= render 'spree/admin/shared/no_objects_found',
+                 resource: Spree::Label,
+                 new_resource_url: new_object_url %>
+  </div>
+<% end %>
+
+# touched on 2025-05-22T19:21:45.884548Z
+# touched on 2025-05-22T21:34:14.540422Z
+# touched on 2025-05-22T22:34:21.187217Z
+# touched on 2025-05-22T22:55:43.100567Z

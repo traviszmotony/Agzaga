@@ -1,0 +1,23 @@
+<div id="pick-up-popup" class="popup-overlay">
+  <div class="popup">
+    <h2>Whoops!</h2>
+    <div class="close-popup">&times;</div>
+
+    <div class="content">
+      It looks like your cart already contains products that are eligible for event pick-up. Please complete that order first, then place a separate order for anything you'd like shipped.
+    </div>
+
+    <div class="buttons_section">
+      <a class="clear-link poppins-text-12 cart_btn" href="<%= spree::cart_path %>" >
+        GO TO CART
+      </a>
+
+      <div class="separater d-md-block d-none">or</div>
+
+      <%= link_to 'EMPTY CART', empty_cart_path, method: :put, class: 'clear-link poppins-text-12 empty-pick-up-order' %>
+    </div>
+  </div>
+</div>
+
+# touched on 2025-05-22T20:40:32.117632Z
+# touched on 2025-05-22T22:30:30.725280Z

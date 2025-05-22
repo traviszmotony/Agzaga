@@ -1,0 +1,74 @@
+<div class="email-registration-section">
+  <div class="modal-header">
+    <div class="modal-title">Welcome to Agzaga.</div>
+
+    <div type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <%= image_tag("modal-close.svg") %>
+    </div>
+  </div>
+
+  <%= link_to spree_user_google_oauth2_omniauth_authorize_path, method: :post, data: {turbolinks: false}, class: 'google-login-section' do %>
+    <div class="google-login">
+      <div class="content">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g clip-path="url(#clip0_227_14057)">
+          <path d="M19.8052 10.2304C19.8052 9.55059 19.7501 8.86714 19.6325 8.19839H10.2002V12.0492H15.6016C15.3775 13.2912 14.6573 14.3898 13.6027 15.088V17.5866H16.8252C18.7176 15.8449 19.8052 13.2728 19.8052 10.2304Z" fill="#4285F4"/>
+          <path d="M10.2001 20.0007C12.8971 20.0007 15.1716 19.1152 16.8288 17.5866L13.6063 15.088C12.7097 15.6979 11.5523 16.0433 10.2038 16.0433C7.59491 16.0433 5.38289 14.2833 4.58921 11.9169H1.26384V14.4927C2.96143 17.8695 6.41909 20.0007 10.2001 20.0007Z" fill="#34A853"/>
+          <path d="M4.58564 11.9169C4.16676 10.6749 4.16676 9.33009 4.58564 8.08813V5.51234H1.26395C-0.154389 8.33799 -0.154389 11.667 1.26395 14.4927L4.58564 11.9169Z" fill="#FBBC04"/>
+          <path d="M10.2001 3.95805C11.6258 3.936 13.0037 4.47247 14.0362 5.45722L16.8913 2.60218C15.0834 0.904587 12.684 -0.0287217 10.2001 0.000673888C6.41909 0.000673888 2.96143 2.13185 1.26384 5.51234L4.58554 8.08813C5.37554 5.71811 7.59123 3.95805 10.2001 3.95805Z" fill="#EA4335"/>
+          </g>
+          <defs>
+          <clipPath id="clip0_227_14057">
+          <rect width="20" height="20" fill="white"/>
+          </clipPath>
+          </defs>
+        </svg>
+
+        <div class="text">Login with Google</div>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="separator">
+    <div class="separating-line">
+      <span class="text">Or</span>
+    </div>
+  </div>
+
+  <div class="modal-body">
+    <div class="body-header">
+      <div class="body-header-title">Enter your email</div>
+
+      <div class="body-header-text">to sign in or create a free account.</div>
+    </div>
+
+    <%= form_for Spree.user_class.new, as: :spree_user, url: spree.user_registration_path, method: :post, remote: true do |f| %>
+      <div id="nav-login-form">
+        <div class="form-group">
+          <div class="ag-input-neutral shipping-email">
+
+            <div class="ag-input-group-box email-validation">
+              <%= f.text_field :email, required: true, class: "ag-input-field form-control",  placeholder: "Email", id: "nav_login_email"%>
+            </div>
+
+            <span class="email-message error-message" id="email-modal-message">
+              Please enter a valid email address.
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <%= f.button id: 'nav-continue-btn', class: 'ag-btn ag-btn-md ag-btn-primary nav-login-btn', type: 'submit', tabindex: 4, autofocus: true do %>
+          Continue
+          <%= image_tag 'next-arrow-white.svg' %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+# touched on 2025-05-22T20:43:50.947744Z
+# touched on 2025-05-22T20:44:48.345926Z
+# touched on 2025-05-22T22:45:00.985184Z
+# touched on 2025-05-22T22:45:28.048587Z

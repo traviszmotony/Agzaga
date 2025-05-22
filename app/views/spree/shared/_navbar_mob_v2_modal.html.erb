@@ -1,0 +1,255 @@
+<div
+    class="modal fade left"
+    id="responsiveModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true"
+  >
+  <div class="modal-dialog m-0" id="small-modal-dialouge" role="document">
+    <div class="modal-content" id="small-modal-content">
+      <div class="modal-header-top">
+        <div class="small-nav-header">
+          <div class="home-icon">
+              <%= link_to spree::root_url do %>
+                <%= image_tag "home-btn-nav.svg", alt: '' %>
+              <% end %>
+          </div>
+
+          <div class="nav-logo">
+            <%= link_to spree::root_url, class: 'small-nav-logo-modal' do %>
+              <%= image_tag 'logo_mob.svg', alt: 'Agzaga' %>
+            <% end %>
+          </div>
+
+          <div class="close-btn" data-dismiss="modal" aria-label="Close">
+              <%= image_tag "close-btn-nav.svg", alt: '' %>
+          </div>
+
+        </div>
+      </div>
+      <div class="coupon-code-mob-box overflow-hidden">
+        <div class="animate__animated animate__slideInDown coupon-code-text" >
+          <div class="display-justify for-mbl">
+            <%= image_tag 'pre-header-token-icon.svg', alt: 'Coupon'%>
+            <span class="deals-here-for">To get 5% off your first order, use the code</span>
+            <span class="black-friday">FIRST5</span>
+            <span class="deals-here-for">at checkout</span>
+          </div>
+        </div>
+      </div>
+      <div class="black-friday-mob-box overflow-hidden">
+        <div class="animate__animated animate__slideInDown black-friday-countdown" >
+          <div class="display-justify">
+            <span class="deals-here-for text">4th of July GIVEAWAY! - click</span>
+          </div>
+
+          <div class="display-justify for-mbl">
+            <span class="black-friday"><a href="https://gleam.io/lyLr5/agzagas-get-your-flag-on-giveaway" target="_blank">HERE</a></span>
+            <span class="deals-here-for">to enter</span>
+          </div>
+
+        </div>
+      </div>
+      <div class="modal-body modal-body-content">
+
+        <div class="small-nav-list-bottom">
+          <div class="modal-body">
+
+            <div class="category-title-list-block">
+
+              <% cache @taxonomies, expires_in: 30.minutes do %>
+                <div class="category-list-items category-item-heading">
+                  <%= link_to "/products/deals",class: "d-flex justify-content-between" do %>
+                    <span >Deals </span>
+                    <span>
+                      <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L6 6L1 11" stroke="#18181B" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                  <% end %>
+                </div>
+
+                <div class="category-list-items category-item-heading">
+                  <%= link_to spree::gift_page_products_path, class: "d-flex justify-content-between" do %>
+                    <span >Gift Bundles </span>
+                    <span>
+                      <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L6 6L1 11" stroke="#18181B" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                  <% end %>
+                </div>
+
+                <% @taxonomies.each do |taxonomy| %>
+                  <div class="category-list-items ">
+                    <% if taxonomy.root.children.present? %>
+                      <span class="d-flex category-section">
+                        <span>
+                          <%= link_to taxonomy.name, spree::nested_taxons_url(taxonomy.root.permalink), data: { turbolinks: false }, class: 'category-name' %>
+                        </span>
+
+                        <%= link_to load_taxon_children_path({id: taxonomy.root.id}),class:"open_sub_set parent_taxonomy has_children d-flex", data: { turbolinks: false }, remote: true do %>
+                          <span>
+                            <%= hidden_field_tag :children_count, taxonomy.root.children.where(visibility: true).count %>
+                            <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M1 1L6 6L1 11" stroke="#18181B" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                          </span>
+                        <% end %>
+                      </span>
+                    <% else %>
+                      <%= link_to taxonomy.name, spree::nested_taxons_url(taxonomy.root.permalink) %>
+                    <% end %>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+
+          </div>
+        </div>
+
+        <% if spree_user_signed_in? %>
+          <% user_total_available_store_credit = spree_current_user&.total_available_store_credit.to_f %>
+
+          <div class="store-credit-block">
+            <div class="store-credit-heading">You Have Store Credit</div>
+            <div class="store-credit-sub-heading">Be sure to use it at checkout!</div>
+            <div class="btn-cash <%= user_total_available_store_credit > 0.0 ? "have-cash" : "no-cash" %>" >
+              <%= spree_current_user.display_total_available_store_credit %> Available
+            </div>
+          </div>
+        <% end %>
+
+        <div id="small-nav-list-top-v2">
+          <% if spree_user_signed_in? %>
+
+          <div class="modal-body">
+            <div class="list-item">
+              <a href="<%= spree::account_path %>">
+                <span class="account-icons">
+                  <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 6C8.65686 6 10 4.65685 10 3C10 1.34315 8.65686 0 7 0C5.34315 0 4 1.34315 4 3C4 4.65685 5.34315 6 7 6Z" fill="#3F3F46"/>
+                    <path d="M0 15C0 11.134 3.13401 8 7 8C10.866 8 14 11.134 14 15H0Z" fill="#3F3F46"/>
+                  </svg>
+                </span>
+                Profile
+              </a>
+            </div>
+
+            <div class="list-item">
+              <a href="<%= spree::account_path + '#my-orders' %>">
+                <span class="account-icons">
+                  <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 0C0.895431 0 0 0.895431 0 2V3H16V2C16 0.895431 15.1046 0 14 0H2Z" fill="#3F3F46"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M16 5H0V10C0 11.1046 0.895431 12 2 12H14C15.1046 12 16 11.1046 16 10V5ZM2 9C2 8.44771 2.44772 8 3 8H4C4.55228 8 5 8.44771 5 9C5 9.55229 4.55228 10 4 10H3C2.44772 10 2 9.55229 2 9ZM7 8C6.44772 8 6 8.44771 6 9C6 9.55229 6.44772 10 7 10H8C8.55228 10 9 9.55229 9 9C9 8.44771 8.55228 8 8 8H7Z" fill="#3F3F46"/>
+                  </svg>
+                </span>
+                Orders
+              </a>
+            </div>
+
+            <div class="list-item">
+              <a href="<%= spree::favorites_path %>">
+                <span class="account-icons">
+                  <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M1.17157 1.17157C2.73367 -0.390524 5.26633 -0.390524 6.82843 1.17157L8 2.34315L9.17157 1.17157C10.7337 -0.390524 13.2663 -0.390524 14.8284 1.17157C16.3905 2.73367 16.3905 5.26633 14.8284 6.82843L8 13.6569L1.17157 6.82843C-0.390524 5.26633 -0.390524 2.73367 1.17157 1.17157Z" fill="#3F3F46"/>
+                  </svg>
+                </span>
+                Saved Products
+              </a>
+            </div>
+
+            <div class="list-item">
+              <a href="<%= spree::account_path %>">
+                <span class="account-icons">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.48922 1.17094C9.1102 -0.390314 6.8898 -0.390314 6.51078 1.17094C6.26594 2.17949 5.11045 2.65811 4.22416 2.11809C2.85218 1.28212 1.28212 2.85218 2.11809 4.22416C2.65811 5.11045 2.17949 6.26593 1.17094 6.51078C-0.390314 6.8898 -0.390314 9.1102 1.17094 9.48922C2.17949 9.73407 2.65811 10.8896 2.11809 11.7758C1.28212 13.1478 2.85218 14.7179 4.22417 13.8819C5.11045 13.3419 6.26594 13.8205 6.51078 14.8291C6.8898 16.3903 9.1102 16.3903 9.48922 14.8291C9.73407 13.8205 10.8896 13.3419 11.7758 13.8819C13.1478 14.7179 14.7179 13.1478 13.8819 11.7758C13.3419 10.8896 13.8205 9.73407 14.8291 9.48922C16.3903 9.1102 16.3903 6.8898 14.8291 6.51078C13.8205 6.26593 13.3419 5.11045 13.8819 4.22416C14.7179 2.85218 13.1478 1.28212 11.7758 2.11809C10.8896 2.65811 9.73407 2.17949 9.48922 1.17094ZM8 11C9.65685 11 11 9.65685 11 8C11 6.34315 9.65685 5 8 5C6.34315 5 5 6.34315 5 8C5 9.65685 6.34315 11 8 11Z" fill="#3F3F46"/>
+                  </svg>
+                </span>
+                Account Settings
+              </a>
+            </div>
+
+            <div class="list-item">
+              <a href="<%= spree::about_us_path %>">
+                <span class="about-us-icons">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M4 4C4 2.89543 4.89543 2 6 2H14C15.1046 2 16 2.89543 16 4V16C16.5523 16 17 16.4477 17 17C17 17.5523 16.5523 18 16 18H13C12.4477 18 12 17.5523 12 17V15C12 14.4477 11.5523 14 11 14H9C8.44772 14 8 14.4477 8 15V17C8 17.5523 7.55229 18 7 18H4C3.44772 18 3 17.5523 3 17C3 16.4477 3.44772 16 4 16V4ZM7 5H9V7H7V5ZM9 9H7V11H9V9ZM11 5H13V7H11V5ZM13 9H11V11H13V9Z" fill="#3F3F46"/>
+                </svg>
+
+                </span>
+                About Us
+              </a>
+            </div>
+
+            <div class="list-item">
+              <a href="<%= spree::faqs_page_path %>">
+                <span class="account-icons">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M16 8C16 12.4183 12.4183 16 8 16C3.58172 16 0 12.4183 0 8C0 3.58172 3.58172 0 8 0C12.4183 0 16 3.58172 16 8ZM8.00001 5C7.63113 5 7.3076 5.19922 7.13318 5.50073C6.85664 5.97879 6.24491 6.14215 5.76685 5.86561C5.28879 5.58906 5.12543 4.97733 5.40197 4.49927C5.91918 3.60518 6.88833 3 8.00001 3C9.65687 3 11 4.34315 11 6C11 7.30622 10.1652 8.41746 9.00001 8.82929V9C9.00001 9.55228 8.5523 10 8.00001 10C7.44773 10 7.00001 9.55228 7.00001 9V8C7.00001 7.44772 7.44773 7 8.00001 7C8.5523 7 9.00001 6.55228 9.00001 6C9.00001 5.44772 8.5523 5 8.00001 5ZM8 13C8.55228 13 9 12.5523 9 12C9 11.4477 8.55228 11 8 11C7.44772 11 7 11.4477 7 12C7 12.5523 7.44772 13 8 13Z" fill="#3F3F46"/>
+                  </svg>
+                </span>
+                Help
+              </a>
+            </div>
+
+            <div class="list-item">
+              <a data-method="delete" href="<%= spree::logout_path %>">
+                <span class="account-icons">
+                  <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M1 -6.55671e-07C1.55229 -6.55671e-07 2 0.447715 2 0.999999L2 13C2 13.5523 1.55229 14 1 14C0.447716 14 1.31496e-06 13.5523 1.3391e-06 13L1.86364e-06 0.999999C1.88778e-06 0.447715 0.447718 -6.55671e-07 1 -6.55671e-07ZM8.70711 3.29289C9.09763 3.68342 9.09763 4.31658 8.70711 4.70711L7.41421 6L15 6C15.5523 6 16 6.44771 16 7C16 7.55228 15.5523 8 15 8L7.41421 8L8.70711 9.29289C9.09763 9.68342 9.09763 10.3166 8.70711 10.7071C8.31658 11.0976 7.68342 11.0976 7.29289 10.7071L4.29289 7.70711C4.10536 7.51957 4 7.26522 4 7C4 6.73478 4.10536 6.48043 4.29289 6.29289L7.29289 3.29289C7.68342 2.90237 8.31658 2.90237 8.70711 3.29289Z" fill="#18181B"/>
+                  </svg>
+                </span>
+                Log Out
+              </a>
+            </div>
+          </div>
+
+          <% else %>
+            <div class="unsigned-btns">
+              <div class="unsigned-user-heading">Become an Agzaga Member for easy access to the best deals in Agriculture. </div>
+              <div class="d-flex joinus-login-block">
+                <a class="sign-up-btn poppins-text-16" data-toggle="modal" data-target=".checkout-login-modal" data-dismiss="modal">Sign In</a>
+                <a class="ml-0 login-up-btn poppins-text-16" data-toggle="modal" data-target=".checkout-login-modal" data-dismiss="modal">Join Us</a>
+              </div>
+            </div>
+
+            <div class="modal-body">
+              <div class="list-item">
+                <a href="<%= spree::about_us_path %>">
+                  <span class="about-us-icons">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M4 4C4 2.89543 4.89543 2 6 2H14C15.1046 2 16 2.89543 16 4V16C16.5523 16 17 16.4477 17 17C17 17.5523 16.5523 18 16 18H13C12.4477 18 12 17.5523 12 17V15C12 14.4477 11.5523 14 11 14H9C8.44772 14 8 14.4477 8 15V17C8 17.5523 7.55229 18 7 18H4C3.44772 18 3 17.5523 3 17C3 16.4477 3.44772 16 4 16V4ZM7 5H9V7H7V5ZM9 9H7V11H9V9ZM11 5H13V7H11V5ZM13 9H11V11H13V9Z" fill="#3F3F46"/>
+                    </svg>
+                  </span>
+                  About Us
+                </a>
+              </div>
+
+              <div class="list-item">
+                <a href="<%= spree::faqs_page_path %>">
+                  <span class="account-icons">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M16 8C16 12.4183 12.4183 16 8 16C3.58172 16 0 12.4183 0 8C0 3.58172 3.58172 0 8 0C12.4183 0 16 3.58172 16 8ZM8.00001 5C7.63113 5 7.3076 5.19922 7.13318 5.50073C6.85664 5.97879 6.24491 6.14215 5.76685 5.86561C5.28879 5.58906 5.12543 4.97733 5.40197 4.49927C5.91918 3.60518 6.88833 3 8.00001 3C9.65687 3 11 4.34315 11 6C11 7.30622 10.1652 8.41746 9.00001 8.82929V9C9.00001 9.55228 8.5523 10 8.00001 10C7.44773 10 7.00001 9.55228 7.00001 9V8C7.00001 7.44772 7.44773 7 8.00001 7C8.5523 7 9.00001 6.55228 9.00001 6C9.00001 5.44772 8.5523 5 8.00001 5ZM8 13C8.55228 13 9 12.5523 9 12C9 11.4477 8.55228 11 8 11C7.44772 11 7 11.4477 7 12C7 12.5523 7.44772 13 8 13Z" fill="#3F3F46"/>
+                    </svg>
+                  </span>
+                  Help
+                </a>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+        <div id="taxonomiespartial" class="list-placeholder">
+        </div>
+      </div>
+
+      <div class="modal-footer modal-footer-bottom">
+        <%= render partial: 'spree/shared/social_icons'%>
+      </div>
+    </div>
+  </div>
+</div>
+
+# touched on 2025-05-22T22:46:45.200365Z

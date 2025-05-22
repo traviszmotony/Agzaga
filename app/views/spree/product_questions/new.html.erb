@@ -1,0 +1,21 @@
+<%= form_for @product_question, url: product_product_questions_path(@product), html: { method: :post, multipart: true} do |f| %>
+  <%= render "spree/shared/error_messages", target: @product_question %>
+
+  <p class="review_name_field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, maxlength: "255", size: "50" %>
+  </p>
+
+  <p class="review_title_field">
+    <%= f.label :question %><br />
+    <%= f.text_area :question, maxlength: "255", size: "50" %>
+  </p>
+
+  <p class="review_submit">
+    <%= f.submit "submit", class: "button bg_darkfirst" %>
+  </p>
+<% end %>
+
+# touched on 2025-05-22T19:17:30.937743Z
+# touched on 2025-05-22T20:41:47.293029Z
+# touched on 2025-05-22T22:38:27.419208Z

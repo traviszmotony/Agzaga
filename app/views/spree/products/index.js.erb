@@ -1,0 +1,18 @@
+var data = '';
+
+<% @products.each do |product| %>
+  data += '<div class="col search-product"><%= j render(partial: "spree/shared/product_card", locals: { product: product }) %></div>'
+<% end %>
+
+$('#products').html(data);
+
+$('#search-section').html('<%= j (paginate(@products, :remote => true, left: 3, right: 1, window: 1)) %>');
+
+$('html, body').animate({
+  scrollTop: $(".product-search-page").offset().top
+}, 800);
+
+# touched on 2025-05-22T19:22:24.129810Z
+# touched on 2025-05-22T21:30:36.185936Z
+# touched on 2025-05-22T21:51:14.254571Z
+# touched on 2025-05-22T22:38:47.930448Z

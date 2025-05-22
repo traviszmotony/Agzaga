@@ -1,0 +1,122 @@
+<% address_id = address_type.chars.first %>
+<% read_only ||= false %>
+<% check_validation = address.empty? ? 'check-validation' : '' %>
+<div class="inner was-validatad" data-hook=<%="#{address_type}_inner" %>>
+  <div class="shipping-address-field ag-input-neutral">
+    <div class="ag-input-group-box first-name-field border-right-none" data-address="<%= address_type %>">
+      <%= form.text_field :firstname, required: true, id: "#{address_id}firstname", class: "#{check_validation} ag-input-field custom-field-input name-field", placeholder: "First Name" %>
+
+      <div class="ag-input-icon-append">
+        <%= image_tag 'invalid-field.png' %>
+      </div>
+    </div>
+
+    <div class="ag-input-group-box last-name-field border-left-none" data-address="<%= address_type %>">
+      <%= form.text_field :lastname, required: true, id: "#{address_id}lastname", class: "#{check_validation} ag-input-field custom-field-input name-field", placeholder: "Last Name" %>
+
+      <div class="ag-input-icon-append">
+        <%= image_tag 'invalid-field.png' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="shipping-address-field ag-input-neutral">
+    <div class="ag-input-group-box  top-border-none" data-address="<%= address_type %>">
+      <%= form.text_field :address1, required: true, id: "#{address_id}address1", class: "#{check_validation} custom-field-input", placeholder: "Address line 1" %>
+
+      <div class="ag-input-icon-append">
+        <%= image_tag 'invalid-field.png' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="shipping-address-field ag-input-neutral">
+    <div class="ag-input-group-box  top-border-none" data-address="<%= address_type %>">
+      <%= form.text_field :address2, id: "#{address_id}address2", class: "address-line", placeholder: "Address line 2" %>
+
+      <div class="ag-input-icon-append">
+        <%= image_tag 'invalid-field.png' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="shipping-address-field ag-input-neutral">
+    <div class="ag-input-group-box top-border-none border-right-none" data-address="<%= address_type %>">
+      <%= form.text_field :city, required: true, id: "#{address_id}city", class: "#{check_validation} city-area custom-field-input", placeholder: "City" %>
+
+      <div class="ag-input-icon-append">
+        <%= image_tag 'invalid-field.png' %>
+      </div>
+    </div>
+
+    <div class="shipping-address-field state-field top-border-none border-right-none">
+      <% if Spree::Config[:address_requires_state] %>
+        <label class="custom-field poppins-text-16 city-area state-validation" id="<%="#{address_id}state" %>" data-address="<%= address_type %>">
+
+          <% have_states = !address.country.states.empty? %>
+          <%=
+            form.collection_select(
+              :state_id, @allowed_states, :id, :abbr,
+              {include_blank: "State"},
+              {
+                class: have_states ? 'custom-field-input required states-drop-down' : '',
+                style: have_states ? '' : 'display: none;',
+                disabled: !have_states,
+                autocomplete: address_type + ' address-level1',
+              }
+            )
+          %>
+          <h6 id="state-error" class="text-danger text-left"></h6>
+
+          <%=
+            form.text_field(
+              :state_name,
+              class: !have_states ? 'custom-field-input required ' : '',
+              style: have_states ? 'display: none;' : '',
+              disabled: have_states,
+              autocomplete: address_type + ' address-level1',
+            )
+          %>
+        </label>
+      <% end %>
+    </div>
+
+    <div class="ag-input-group-box zip-validation top-border-none" data-address="<%= address_type %>">
+      <%= form.text_field :zipcode, id: "#{address_id}zipcode", class: "#{check_validation} custom-field-input", required: true, placeholder: "ZIP" %>
+
+      <div class="ag-input-icon-append">
+        <%= image_tag 'invalid-field.png' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="shipping-address-field bottom-round-border ag-input-neutral">
+    <div class="ag-input-group-box top-border-none phone-validation" data-address="<%= address_type %>">
+      <div class="flag-field-icon"><%= image_tag 'flag-united-states.png' %></div>
+      <%= form.text_field :phone, required: true, id: "#{address_id}phone", placeholder: "Phone Number", class: "#{check_validation} text-left custom-field-input" %>
+
+      <div class="ag-input-icon-append">
+        <%= image_tag 'invalid-field.png' %>
+      </div>
+    </div>
+  </div>
+
+  <% unless read_only %>
+    <div id=<%="#{address_id}country" %>>
+      <%= form.hidden_field :country_id, value: Spree::Country.find_by(iso: 'US')&.id %>
+    </div>
+  <% end %>
+
+  <% if Spree::Config[:alternative_shipping_phone] %>
+    <div class="field" id=<%="#{address_id}altphone" %>>
+      <%= form.label :alternative_phone, t('spree.alternative_phone') %>
+      <%= form.phone_field :alternative_phone, autocomplete: address_type + ' tel'%>
+    </div>
+  <% end %>
+</div>
+
+<div class="error-messages-section <%=address_type%>">
+</div>
+
+# touched on 2025-05-22T22:34:12.789976Z
+# touched on 2025-05-22T22:45:00.986057Z

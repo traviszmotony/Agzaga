@@ -1,0 +1,8 @@
+class AddMaxStockToSpreeStockItems < ActiveRecord::Migration[6.1]
+  def change
+    add_column :spree_stock_items, :max_stock, :integer
+  end
+end
+
+# touched on 2025-05-22T21:51:17.989168Z
+# touched on 2025-05-22T22:32:17.821711Z

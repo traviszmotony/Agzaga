@@ -1,0 +1,253 @@
+#header_v2, .home.index_v2, .footer_v2, .checkout.edit, .orders.show, .products.deals, .products.gift_page {
+  $wheat: #ffb514;
+  $sunset: #ef7f0f;
+  $sprout: #395a40;
+  $sunrise: #cc2e09;
+  $white: #f9f9f9;
+  $black: #1E1E1E;
+  $cardwhite: #F0F0F0;
+  $cardsite: #EFEFEF;
+
+  .lexend-h1 {
+    font-family: Lexend, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 109.66px;
+    line-height: 137px;
+    letter-spacing: 0.01em;
+    color: $black;
+    cursor: default;
+  }
+
+  .lexend-h2 {
+    font-family: Lexend, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 67.77px;
+    line-height: 85px;
+    letter-spacing: 0.01em;
+    color: $black;
+    cursor: default;
+  }
+
+  .lexend-h3 {
+    font-family: Lexend, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 41.89px;
+    line-height: 52px;
+    letter-spacing: 0.01em;
+    color: $black;
+    cursor: default;
+  }
+
+  .lexend-h4 {
+    font-family: Lexend, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 25.89px;
+    line-height: 32px;
+    letter-spacing: 0.01em;
+    color: $black;
+    cursor: default;
+  }
+
+  .lexend-heading-32 {
+    font-family: Lexend;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 40px;
+    color: $black;
+    cursor: default;
+  }
+
+  .poppins-body-24 {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 24px;
+    color: $black;
+    cursor: default;
+  }
+
+  .poppins-body-16 {
+    font-family: Poppins, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.01em;
+    color: $black;
+    cursor: default;
+
+    &.bold {
+      font-family: 'Poppins-bold', sans-serif;
+      font-weight: bold;
+    }
+
+    &.bold-600 {
+      font-weight: 600;
+    }
+  }
+
+  .poppins-body-12 {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.03em;
+    color: $black;
+    cursor: default;
+
+    &.bold {
+      font-family: 'Poppins-bold', sans-serif;
+      font-weight: bold;
+    }
+  }
+
+  .poppins-small-text {
+    font-family: Poppins, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 9.89px;
+    line-height: 15px;
+    letter-spacing: 0.03em;
+    color: $black;
+    cursor: default;
+
+    &.pre-title-text {
+      font-family: 'Poppins-bold', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+  }
+
+  .col-41 {
+    width: 41.83%;
+    max-width: 502px;
+  }
+
+  .col-58 {
+    width: 58.17%;
+    max-width: 698px;
+  }
+
+  .col-50 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .col-55 {
+    flex: 0 0 55%;
+    max-width: 55%;
+  }
+
+  .col-74 {
+    flex: 0 0 74%;
+    max-width: 74%;
+  }
+
+  .col-26 {
+    flex: 0 0 26%;
+    max-width: 26%;
+  }
+
+  .ag-btn-white {
+    border-radius: 100px;
+    padding: 8px 23px;
+    background-color: $white;
+    color: $black;
+    border: 1px solid $white;
+  }
+
+  .ag-btn-default {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 16px;
+    height: 32px;
+    border: 1px solid $black;
+    border-radius: 100px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 9.89px;
+    line-height: 15px;
+    letter-spacing: 0.03em;
+    color: $black;
+    text-transform: capitalize;
+
+    &:hover {
+      background-color: $black;
+      color: $white;
+      &::after {
+        content: image-url("view-all-arrow-hover.svg");
+        padding-left: 6px;
+      }
+    }
+
+    &:active {
+      border: 2px solid #DADADA;
+    }
+
+    &::after {
+      content: image-url("view-more-arrow.svg");
+      padding-left: 6px;
+    }
+  }
+
+  .mobile-only {
+    display: none;
+  }
+
+  @media (max-width: 767px) {
+    .poppins-body-16 {
+      font-size: 15px;
+      line-height: 20px;
+    }
+
+    .col-26, .col-41, .col-58, .col-74 {
+      width: 100%;
+      max-width: 100%;
+      flex: 0 0 100%;
+    }
+
+    .lexend-heading-32 {
+      font-size: 25.89px;
+      line-height: 32.36px;
+    }
+
+    .mobile-only {
+      display: block;
+    }
+
+    .desktop-only {
+      display: none;
+    }
+
+    .ag-btn-default.mobile-only {
+      width: 183px;
+      height: 40px;
+      display: flex;
+      margin: 0 auto;
+    }
+  }
+
+  @media (max-width: 425px) {
+    .lexend-heading-32 {
+      font-size: 25.89px;
+      line-height: 32.36px;
+      letter-spacing: 0.01em;
+    }
+  }
+}
+
+# touched on 2025-05-22T20:44:29.425703Z
+# touched on 2025-05-22T21:30:47.552213Z
+# touched on 2025-05-22T22:30:45.940646Z
+# touched on 2025-05-22T22:44:58.293976Z

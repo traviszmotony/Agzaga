@@ -1,0 +1,51 @@
+<div class="ag-category-card">
+  <div class="ag-card-header">
+    <div class="lexend-heading-32">Categories</div>
+    <a href="<%= spree::product_categories_path %>" class="ag-btn-default clear-link desktop-only">View More</a>
+  </div>
+
+  <div class="ag-card-body">
+    <div class="d-flex ag-f-wrap justify-content-between">
+      <div class="col-55 category-cut">
+        <% all_categories_link = spree::product_categories_path %>
+
+        <a href="<%= all_categories_link %>"
+            class="d-block clear-link right-cut-img">
+          <picture>
+            <source media="(max-width:991px)" srcset="https://assets.agzaga.com/public_images/all_products_image-mobile.webp" type="image/webp" >
+            <source media="(max-width:991px)" srcset="https://assets.agzaga.com/public_images/all_products_image-mobile.png" type="image/png" >
+
+            <source srcset="https://assets.agzaga.com/public_images/all_products_image.webp" type="image/webp" >
+
+            <img data-src="https://assets.agzaga.com/public_images/all_products_image.png" alt="All categories", loading="lazy" >
+          </picture>
+        </a>
+
+        <%= link_to 'All Products', all_categories_link, class: 'category-title poppins-body-12 bold clear-link' %>
+      </div>
+
+      <% cache @categories, expires_in: 30.minutes do %>
+        <% @categories.each_with_index do | category, index | %>
+          <% category_link = spree::nested_taxons_url(id: category.root.permalink) %>
+          <div class="col-55 <%= index.even? ? 'mr-l-35-n text-right category-cut': 'category-cut' %>">
+
+            <a href="<%= category_link %>"
+                class=" d-block clear-link <%= index.even? ? 'left-cut-img' : 'right-cut-img' %>">
+              <% taxon_image_url = category.root.icon.url(:medium) %>
+
+              <% category_image_url = taxon_image_url.present? ? image_cdn_link(taxon_image_url) : 'noimage_rect.png' %>
+
+              <%= image_tag category_image_url, alt: "#{category.name} category", loading: "lazy" %>
+            </a>
+
+            <%= link_to category.name, category_link, class: 'category-title poppins-body-12 bold clear-link' %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+    <a href="<%= spree::product_categories_path %>" class="ag-btn-default clear-link mobile-only">View More</a>
+</div>
+
+# touched on 2025-05-22T22:55:35.609473Z

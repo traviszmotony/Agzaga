@@ -1,0 +1,208 @@
+<% product_on_sale = @product&.on_sale? ? true : false %>
+<% product_reviews_count = @product&.reviews_count %>
+<% product_questions_count = @product_questions&.total_count %>
+
+<div class="chuckwagon-landing-page">
+  <div class="chuckwagon-cta">
+    <picture>
+      <source media="(max-width:991px)" srcset="https://assets.agzaga.com/public_images/chuckwagon-header-mobile.webp" type="image/webp" >
+      <source srcset="https://assets.agzaga.com/public_images/chuckwagon-header.webp" type="image/webp" >
+      <img src="chuckwagon-header.png" alt="Chuckwagon DVD" loading= "lazy" class="d-block w-100 outerdiv-img" >
+    </picture>
+  </div>
+
+  <%= render 'spree/pages/partials/pre_order_form', locals: {button_text: 'Pre-Order Now'}, from_chukwagon: true, variant_id_prefix: 'top' %>
+
+  <div class="heading">
+    More Races, More Memories, <span class="heading-color"> More Chuckwagon <span>
+  </div>
+
+  <div class="chuckwagon-dvd-product-block first">
+    <% cache @chuckwagon_races_products, expires_in: 30.minutes do %>
+      <%= render partial: 'spree/pages/partials/chuckwagon_dvd_product', collection: @chuckwagon_races_products, as: :product, locals:{ variant_id_prefix: 'races'}, cached: true %>
+    <% end %>
+  </div>
+
+  <div class="enter-win-section">
+    <div class="win-heading"><div class="win-heading-tag">Hey Race Fans!</div>
+    <div class="win-divider"></div></div>
+    <div class="giving-away-block">
+      <div class="giving-away-detail">
+        <div class="giving-heading">We’re giving away $500 in Agzaga Store Credit.</div>
+        <div class="giving-sub-heading">In celebration of the 2022 <span class="highlighter">Chuckwagon Races</span>, we’re giving away $500 to one lucky winner!</div>
+        <div class="terms">Terms: One winner will be announced on 9-16-2022. Entries will be accepted until Midnight, 9-15-2022.</div>
+      </div>
+
+      <div class="form-block">
+        <%= form_for @chuckwagon_winner_enrollment, remote: true, method: :post do |f| %>
+
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+          <div class="form-row">
+            <div class="ag-input-neutral giving-form-width">
+              <div class="ag-input-label">Full Name</div>
+              <div class="ag-input-group-box">
+                <%= f.text_field :name, required: true, class: "ag-input-field chukwagon-win-name", placeholder: "What's your name?" %>
+              </div>
+              <div class="ag-input-helper-text validation-error chuckwagon-win-name-helper"></div>
+            </div>
+
+            <div class="ag-input-neutral giving-form-width">
+              <div class="ag-input-label">Phone Number</div>
+              <div class="ag-input-group-box">
+                <%= f.phone_field :phone_number, class: 'ag-input-field chukwagon-win-phone', placeholder: "(   )   -" %>
+                <div class="ag-input-icon-append">
+                  <i class="fa fa-phone"></i>
+                </div>
+              </div>
+              <div class="ag-input-helper-text validation-error chuckwagon-win-phone-helper"></div>
+            </div>
+          </div>
+
+          <div class="ag-input-neutral">
+            <div class="ag-input-label">Email Address</div>
+              <div class="ag-input-group-box">
+                <%= f.text_field :email, required: true, class: "ag-input-field custom-field-input form-control chukwagon-win-email",  placeholder: "What's your email?", id: "email"%>
+                <div class="ag-input-icon-append">
+                  <i class="fa fa-envelope"></i>
+                </div>
+              </div>
+            <div class="ag-input-helper-text validation-error chuckwagon-win-email-helper"></div>
+          </div>
+
+          <div class="giving-form-footer">
+            <%= f.submit "Enter to Win", id: "submitButton", class: "ag-btn-primary ag-btn-lg win-btn chukwagon-win-submit", disabled: true %>
+
+            <div class="wining-terms">
+              By clicking Submit, I agree to Agzaga’s <a href="privacy_policy">Privacy Policy</a>.
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="terms terms-sm">Terms: One winner will be announced on 9-16-2022. Entries will be accepted until Midnight, 9-15-2022.</div>
+    </div>
+  </div>
+
+  <div class="master-heading-container">
+    <%= image_tag "glow-icon.svg" %>
+    <div class="master-heading">New</div>
+    <%= image_tag "glow-icon.svg" %>
+  </div>
+
+  <div class="heading">Horse Treats, Sprays, & Accessories</div>
+
+  <div class="chuckwagon-dvd-product-block second">
+    <% cache @horse_accessories, expires_in: 30.minutes do %>
+      <%= render partial: 'spree/pages/partials/chuckwagon_dvd_product', collection: @horse_accessories , as: :product, locals:{variant_id_prefix: 'access'}, cached: true %>
+    <% end %>
+  </div>
+
+  <div class="seperator-line mb-100"></div>
+
+  <div class="outdoor-fun-products-group page-container">
+    <div class="outdoor-products-div">
+      <h1 class="outdoor-products-title">Outdoor Fun for All Ages</h1>
+    </div>
+
+    <% cache @out_door_boards, expires_in: 30.minutes do %>
+      <%= render partial: 'spree/pages/partials/pick_up_product_content', collection: @out_door_boards , as: :product, locals:{variant_id_prefix: 'outdoor-b', from_chukwagon: true}, cached: true %>
+    <% end %>
+
+    <div class="chuckwagon-dvd-product-block third">
+      <% cache @out_door_products, expires_in: 30.minutes do %>
+        <%= render partial: 'spree/pages/partials/chuckwagon_dvd_product', collection: @out_door_products , as: :product, locals:{ variant_id_prefix: 'outdoor'}, cached: true %>
+      <% end %>
+    </div>
+  </div>
+
+  <section class="more-products">
+    <div class="more-products-container">
+      <div class="title-block-container">
+        <div class="title-block">
+          <div class="title">
+            More Products You’ll Love
+          </div>
+          <div class="detail">
+            From the house to the field, we’ve got everything you need, for the best prices in the industry.
+          </div>
+        </div>
+      </div>
+
+      <div class="more-products-block-container">
+        <div class="product-block first">
+          <% cache @summer_deal_products, expires_in: 30.minutes do %>
+            <% summer_deal_product_cards = load_product_cards(@summer_deal_products) %>
+            <%= render partial: 'spree/home/partials_v2/product_card_md', collection: summer_deal_product_cards, as: :product ,locals: {view_in_store: true, button_text: 'More Info', variant_id_prefix: 'more'}, cached: true %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="video">
+    <div class="video-div-icon-container">
+      <%= image_tag 'thunder.svg', alt: 'icon', class: 'video-div-icon' %>
+    </div>
+
+    <div class="video-title">
+      Chuckwagon Video, Powered by Agzaga
+    </div>
+
+    <div class="video-title-desc">
+      We’ll be in the field filming the action, and popped up on Vendor Row! Come check out our tent and get to know us in person, we’d love to meet you.
+    </div>
+
+    <div class="video-block">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/5fgPIVulZqE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <div class="about-video-seperator"></div>
+
+  <section class="about">
+    <div class="about-us-cta">
+      <picture>
+        <source media="(max-width:991px)" srcset="https://assets.agzaga.com/about_us/about_us_cta_mob.webp" type="image/webp">
+        <source media="(max-width:991px)" srcset="https://assets.agzaga.com/about_us/about_us_cta_mob.png" type="image/png" >
+        <source srcset="https://assets.agzaga.com/about_us/about-us-desktop.webp" type="image/webp" >
+
+        <img src="https://assets.agzaga.com/about_us/about-us-desktop.jpg" alt="About us" class="d-block w-100 outerdiv-img video_loader" loading= "lazy" >
+      </picture>
+    </div>
+
+    <div class="our-story-section">
+      <div class="our-story ag-p-sm">Our Story</div>
+
+      <div class="story-section-content">
+        <div class="story-section-left">
+          <div class="story-heading">
+            Four generations of agricultural business experience.
+          </div>
+
+          <%= link_to "Read More", "#{root_url}about_us#our-story", class: 'ag-btn-lg mobile-hide' %>
+        </div>
+
+        <div class="story-section-right">
+          <p>
+            Agzaga brings four generations of agricultural business experience to the table, with the goal of ushering the Ag industry into the next generation by giving Ag people a time and money saving way to quickly and easily get everything they need—all in one place online.
+          </p>
+        </div>
+
+        <%= link_to "Read More", "#{root_url}about_us#our-story", class: 'ag-btn-lg mobile-show' %>
+      </div>
+    </div>
+  </section>
+
+  <div class="about-pre-order-seperator"></div>
+
+  <div class="pre-order-heading"> Don’t Forget to <span class="yellow-text">Pre-Order!</span> </div>
+
+  <%= render 'spree/pages/partials/pre_order_form', product_pre_order_second_bottom: true, from_chukwagon: true, variant_id_prefix: 'pre-order-bot' %>
+</div>
+
+<%= render partial: 'spree/shared/pick_up_popup' %>
+
+
+<%= render 'spree/shared/products_upsell' %>
+
+# touched on 2025-05-22T22:44:00.636048Z

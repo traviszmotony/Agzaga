@@ -1,0 +1,31 @@
+<% admin_layout "full-width" %>
+
+<% admin_breadcrumb(plural_resource_name(Spree::EbayLog)) %>
+
+<table class="index" width="100%" id="listing_orders" data-hook>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Order Number</th>
+      <th>Status code</th>
+      <th>Response</th>
+      <th>Created at</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @logs.each do |log| %>
+      <tr>
+        <td><%= log.id %></td>
+        <td><%= log.order_id %></td>
+        <td><%= log.status_code %></td>
+        <td><%= log.response %></td>
+        <td><%= log.created_at.in_time_zone('Eastern Time (US & Canada)').strftime("%m-%d-%Y %H:%M:%S %Z") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @logs, theme: "solidus_admin" %>
+
+# touched on 2025-05-22T22:37:19.687195Z

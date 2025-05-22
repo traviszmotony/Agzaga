@@ -1,0 +1,122 @@
+<div class="summary-row">
+  <p class="help-tooltip poppins-text-16 name-line">Subtotal
+    <%= image_tag 'help.svg',
+        class: 'help-icon',
+        alt: 'help',
+        id: 'subtotal-help',
+        data: {
+                trigger: 'manual',
+                placement: "bottom",
+                title: 'The subtotal reflects the total of your order before shipping, taxes, or discounts'
+              }
+    %>
+  </p>
+  <p class="poppins-text-16 name-line"><%= order.display_item_total %></p>
+</div>
+
+<% if order.passed_checkout_step?("address") && order.shipments.any? %>
+  <div class="summary-row">
+    <p class="poppins-text-16 name-line">
+      <%= order.shipments&.count == 1 ? order.shipments.first.shipping_method.name.to_s : 'Estimated Shipping' %>
+    </p>
+    <p class="poppins-text-16 pl-3 price shipping_amount">
+      <%= Spree::Money.new(order.shipments.to_a.sum(&:cost), currency: order.currency).to_html %>
+    </p>
+  </div>
+
+  <% if order.shipment_adjustments.nonzero.exists? %>
+    <% order.shipment_adjustments.nonzero.promotion.eligible.group_by(&:label).each do |label, adjustments| %>
+
+      <% active_shipment = order.shipment_adjustments.eligible.first.source %>
+
+      <% if active_shipment.type == "Spree::Promotion::Actions::CreateShippingAdjustments" %>
+        <% active_shipment_discount = active_shipment.calculator.preferences %>
+
+        <span class="d-none active-shipping-discount"><%= active_shipment_discount[active_shipment_discount.keys[0]].to_f  %></span>
+      <% end %>
+
+      <div class="summary-row red-cross">
+        <%= link_to image_tag("times_circle_red.svg", class: 'coupon-icon rmv-promo-icon'), remove_coupon_url( coupon_code: adjustments&.first&.promotion_code&.value ), class: 'rmv-promo-link rmv-per-item-promo', remote: :true, method: :delete, title: 'Remove promo code' %>
+        <p class="poppins-text-16 name"><%= label %></p>
+        <p class="poppins-text-16 bold pl-3 price rm-promo">
+          <%= Spree::Money.new(adjustments.sum(&:amount), currency: order.currency).to_html %>
+        </p>
+      </div>
+    <% end %>
+  <% end %>
+
+<% else %>
+  <div class="summary-row">
+    <p class="poppins-text-16 name-line">Estimated Shipping</p>
+    <p class="poppins-text-16 pl-3 price shipping_amount">$0.00</p>
+  </div>
+<% end %>
+
+<% if order.line_item_adjustments.nonzero.exists? %>
+  <% order.line_item_adjustments.nonzero.promotion.eligible.group_by(&:label).each do |label, adjustments| %>
+
+    <div class="summary-row red-cross">
+      <%= link_to image_tag("times_circle_red.svg", class: 'coupon-icon rmv-promo-icon'), remove_coupon_url( coupon_code: adjustments&.first&.promotion_code&.value ), class: 'rmv-promo-link rmv-per-item-promo', remote: :true, method: :delete, title: 'Remove promo code' %>
+      <p class="poppins-text-16 name"><%= label %></p>
+      <p class="poppins-text-16 pl-3 price  rm-promo">
+        <%= Spree::Money.new(adjustments.sum(&:amount), currency: order.currency).to_html %>
+      </p>
+    </div>
+  <% end %>
+<% end %>
+
+<% order.all_adjustments.nonzero.tax.eligible.group_by(&:label).each do |label, adjustments| %>
+  <div class="summary-row">
+    <p class="help-tooltip poppins-text-16 name">Estimated Tax
+      <%= image_tag 'help.svg', class: 'help-icon', alt: 'help', id: 'tax-help', data: {trigger: 'manual', placement: "bottom", title: 'The actual tax amount will be calculated based on your State and local sales tax.'} %>
+    </p>
+    <p class="poppins-text-16 pl-3 price">
+      <%= Spree::Money.new(adjustments.sum(&:amount), currency: order.currency).to_html %>
+    </p>
+  </div>
+<% end %>
+
+<% if order.adjustments.nonzero.eligible.exists? %>
+  <% order.adjustments.nonzero.eligible.each do |adjustment| %>
+    <% next if (adjustment.source_type == 'Spree::TaxRate') and (adjustment.amount == 0) %>
+
+    <div class="summary-row red-cross">
+      <%= link_to( image_tag("times_circle_red.svg", class: 'coupon-icon rmv-promo-icon'), remove_coupon_url( coupon_code: adjustment&.promotion_code&.value ), class: 'rmv-promo-link rmv-per-item-promo', remote: :true, method: :delete, title: 'Remove promo code') if adjustment&.promotion_code&.value.present? %>
+      <p class="poppins-text-16 name"><%= adjustment.label %></p>
+      <p class="poppins-text-16 bold pl-3 price rm-promo">
+        <%= adjustment.display_amount.to_html %>
+      </p>
+    </div>
+  <% end %>
+<% end %>
+
+<% if order.total_applicable_store_credit > 0.0 && ['payment', 'confirm'].include?(@order.state) %>
+  <div class="summary-row store-credit-section">
+    <p class="poppins-text-16 name"><%= t('spree.store_credit.store_credit') %></p>
+    <p class="poppins-text-16 bold pl-3 price store_credit_price">
+      <%= order.state == 'payment'? Spree::Money.new(0.0).to_html.prepend('-') : order.display_total_applicable_store_credit.to_html %>
+    </p>
+  </div>
+<% end %>
+
+<% if @order.state == 'delivery' || @order.state == 'confirm' || @order.state == 'payment' %>
+  <input name="order_state" type="hidden" value=<%= order.state%> >
+  <input name="order_free_shipping" type="hidden" value="<%= order.free_shipping if order&.shipments&.last&.shipping_method.name == "Standard Shipping" %>">
+  <input name="order_free_shipping_applied" type="hidden" value="">
+<% end %>
+
+<div class="grand-total summary-row">
+  <p class="poppins-bold-text-24 text">
+    Total
+  </p>
+  <p class="poppins-bold-text-24 pl-3 price total_price" data-order-total="<%= order&.display_total&.to_d&.to_f %>">
+    <% if order.total_applicable_store_credit > 0.0 &&  @order.state == 'confirm' %>
+      <%= order.display_order_total_after_store_credit.to_html %>
+    <% else %>
+      <%= order.display_total.to_html %>
+    <% end %>
+  </p>
+</div>
+
+# touched on 2025-05-22T19:13:25.435138Z
+# touched on 2025-05-22T22:44:58.288503Z

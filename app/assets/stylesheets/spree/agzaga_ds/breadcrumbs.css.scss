@@ -1,0 +1,32 @@
+@import "spree/agzaga_ds/agzaga_variables";
+.ag-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  padding: $breadcrumb-padding-y $breadcrumb-padding-x;
+  margin-bottom: $breadcrumb-margin-bottom;
+  list-style: none;
+  font-size: $breadcrumb-font-size;
+
+  .ag-breadcrumb-item {
+    padding-left: $breadcrumb-item-padding-x;
+    color: var(--palette-primary-600);
+
+    a {
+      color: var(--palette-primary-600);
+    }
+
+    &.active {
+      color: var(--palette-neutral-500);
+    }
+  }
+
+  .ag-breadcrumb-item + .ag-breadcrumb-item::before {
+    float: left;
+    padding-right: $breadcrumb-item-padding-x;
+    color: var(--palette-neutral-300);
+    content: var(--bs-breadcrumb-divider, "/");
+  }
+}
+
+# touched on 2025-05-22T22:38:42.245582Z
+# touched on 2025-05-22T22:44:03.816843Z

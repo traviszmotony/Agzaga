@@ -1,0 +1,203 @@
+<% @hose_fittings.each do |v| %>
+  <div class="variant-data" data-id="<%= v.id %>" data-text="<%= v.options_text %>,<%= v.price%>" data-currency="<%= v.prices.last.currency %>"></div>
+  <div class="variant-stock" data-text="<%= v.can_supply?%>"></div>
+<% end %>
+
+<% @custom_hose_variants.each do |v| %>
+  <div class="custom_hose_data" data-id="<%= v.id %>" data-text="<%= v.options_text %>,<%= v.price%> "></div>
+<% end %>
+
+<div class="row card-container">
+  <div class="col-md-2 col-lg-2 section-3">
+    <div class="form-group">
+      <label for="exampleFormControlFile1">LENGTH</label>
+      <div class="line"></div>
+      <div class="input-group mb-3">
+        <%= f.number_field :length, class: "form-control form-control-sm custom_length", max: 300, min: 1, placeholder: "--" %>
+        <div class="input-group-append">
+          <span class="input-group-text">ft.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="color-group">
+      <label class="color" for="exampleFormControlFile1">COLOR</label>
+      <div class="line"></div>
+
+      <div class="radio-feild">
+        <% @custom_hose_variants.each do |variant| %>
+          <% can_supply = variant.can_supply?%>
+          <div class="form-check">
+            <label class="form-check-label <%='disable' if !can_supply %>">
+              <%= variant.option_value('Hose Color') %>
+              <div class="d-none" data-text="<%= variant.option_value('Hose Color') %>"></div>
+              <input type="radio" name="custom_hose[variant_id]" value="<%= variant.id %> " <%='disabled' if !can_supply %>>
+              <span class="checkmark  <%='disable' if !can_supply %>"></span>
+            </label>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="error-message">*Please select a color/length</div>
+  </div>
+
+  <div class="block1 col-sm-6 col-md-5 col-lg-5 col-xl-4 row ml-0 mr-0">
+    <div class="col-sm-12 col-md-6 col-lg-6 section-1">
+      <input type="radio" name="fitting_1_material" id="fitting_1_Aluminum" value="Anodized Aircraft Aluminum" class="fitting_1_material d-none" >
+      <label class="product-card" for="fitting_1_Aluminum">
+        <div class="name">
+          Anodized Aircraft Aluminum
+        </div>
+        <div class="image-container">
+          <%= image_tag 'custom_hose/custom-hose_aluminum_female_zilla-green.jpg' %>
+        </div>
+      </label>
+    </div>
+
+    <div class="col-sm-12 col-md-6 col-lg-6 section-2">
+      <input type="radio" name="fitting_1_material" id="fitting_1_Brass" value="Solid Brass" class="fitting_1_material d-none" >
+      <label class="product-card" for="fitting_1_Brass">
+        <div class="name">
+          Solid Brass
+        </div>
+
+        <div class="image-container">
+          <%= image_tag 'custom_hose/custom-hose_brass_female_zilla-green.jpg' %>
+        </div>
+      </label>
+    </div>
+
+    <div class="radio-group row w-100 ml-0 mr-0" id="small-radio">
+      <div class="radio-btn-m col-xs-6 col-sm-6 col-md-6 col-lg-6 fitting-radio-50 pr-0">
+        <div class="form-check">
+          <label class="form-check-label pl-0">Male&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="fitting_1_flexRadioDefault" value="Male" class="fitting_1_type">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="radio-btn-f col-xs-6 col-sm-6 col-md-6 col-lg-6 fitting-radio-50 pl-0">
+        <div class="form-check">
+          <label class="form-check-label pl-0">Female
+            <input type="radio" name="fitting_1_flexRadioDefault" value="Female" class="fitting_1_type">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="fitting w-100" id="hide-mobile-fitting">
+      <div class="text"> FITTING 1</div>
+      <div class="stroke"></div>
+    </div>
+    <div class="mobile-fitting" id="show-mobile-fitting">
+      <span class="stroke1"><%= image_tag 'custom_hose/Vector 37.svg' %></span>
+      <span class="text">FITTING 1</span>
+      <span class="stroke2"><%= image_tag 'custom_hose/Vector 26.svg' %></span>
+   </div>
+
+   <div class="error-message-fitting">*Please select a fitting type</div>
+
+  </div>
+
+  <div class="block2 col-sm-6 col-md-5 col-lg-5 col-xl-4 row ml-0 mr-0">
+    <div class="col-sm-12 col-md-6 col-lg-6 section-4 ">
+      <input type="radio" name="fitting_2_material" id="fitting_2_Aluminum" value="Anodized Aircraft Aluminum" class="fitting_2_material d-none" >
+      <label class="product-card" for="fitting_2_Aluminum">
+
+        <div class="name">
+          Anodized Aircraft Aluminum
+        </div>
+
+        <div class="image-container">
+          <%= image_tag 'custom_hose/custom-hose_aluminum_female_zilla-green.jpg' %>
+        </div>
+      </label>
+    </div>
+
+    <div class="col-sm-12 col-md-6 col-lg-6 section-5">
+      <input type="radio" name="fitting_2_material" id="fitting_2_Brass" value="Solid Brass" class="fitting_2_material d-none" >
+      <label class="product-card" for="fitting_2_Brass">
+        <div class="name">
+          Solid Brass
+        </div>
+        <div class="image-container">
+          <%= image_tag 'custom_hose/custom-hose_brass_female_zilla-green.jpg' %>
+        </div>
+      </label>
+    </div>
+
+    <div class="radio-group1 row w-100 ml-0 mr-0" id="small-radio">
+      <div class="radio-btn-m col-xs-6 col-sm-6 col-md-6 col-lg-6 fitting-radio-50 pr-0">
+        <div class="form-check">
+          <label class="form-check-label pl-0">Male&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="fitting_2_flexRadioDefault2" value="Male" class="fitting_2_type">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="radio-btn-f col-xs-6 col-sm-6 col-md-6 col-lg-6 fitting-radio-50 pl-0">
+        <div class="form-check">
+          <label class="form-check-label pl-0">Female
+            <input type="radio" name="fitting_2_flexRadioDefault2" value="Female" class="fitting_2_type">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="fitting w-100" id="hide-mobile-fitting">
+      <div class="text"> FITTING 2</div>
+      <div class="stroke"></div>
+    </div>
+    <div class="mobile-fitting" id="show-mobile-fitting">
+      <span class="stroke1-right"><%= image_tag 'custom_hose/Vector 37.svg' %></span>
+      <span class="text-right">FITTING 2</span>
+      <span class="stroke2-right"><%= image_tag 'custom_hose/Vector 26.svg' %></span>
+   </div>
+
+   <div class="error-message-fitting">*Please select a fitting type</div>
+  </div>
+
+  <div class="row section-6 d-md-none ml-0 mr-0">
+    <form>
+      <div class="form-group">
+        <label for="exampleFormControlFile1">LENGTH</label>
+        <div class="line"></div>
+        <div class="input-group mb-3">
+          <%= f.number_field :length, class: "form-control form-control-sm custom_length_mob", max: 300, min: 1, placeholder: "--" %>
+          <div class="input-group-append">
+            <span class="input-group-text">ft.</span>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="color-group">
+      <label class="color" for="exampleFormControlFile1">COLOR</label>
+      <div class="line"></div>
+      <div class="btn d-flex">
+        <div class="radio-feild">
+          <% @custom_hose_variants.each do |variant| %>
+            <% can_supply = variant.can_supply?%>
+            <div class="form-check">
+              <label class="form-check-label <%='disable' if !can_supply %>">
+                <%= variant.option_value('Hose Color') %>
+                <div class="d-none" data-text="<%= variant.option_value('Hose Color') %>"></div>
+                <input type="radio" name="custom_hose1[variant_id]" value="<%= variant.id %> " <%='disabled' if !can_supply %>>
+                <span class="checkmark  <%='disable' if !can_supply %>"></span>
+              </label>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="error-message">*Please select a color/length</div>
+  </div>
+</div>
+
+# touched on 2025-05-22T19:12:47.017312Z
+# touched on 2025-05-22T22:32:45.255438Z

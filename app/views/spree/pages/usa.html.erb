@@ -1,0 +1,41 @@
+<% content_for :title, 'Agzaga - Get Your Flag On' %>
+<% content_for :meta_description, 'Get your American flag baler net wrap and other great patriotic products for your farm this season on Agzaga.com!' %>
+<% content_for :meta_keywords, 'baler net wrap, flag net wrap, flag wrap, americanet, bridon, tama, net wrap, american flag, flag mount' %>
+
+<div class="net-wrap-landing-page american-days">
+  <div class="net-wrap-header">
+    <div class="left-container">
+      <%= image_tag 'https://assets.agzaga.com/public/flag-landing-page-top-left.webp', class: "left-image" %>
+    </div>
+
+    <div class="right-container">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/hzr7hiO2_wE?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <div class="net_wrap-section" id="blue_gold_net_wrap">
+    <div class="flags-heading">Agzaga.com is passionate about American farmers and what better way to support American agriculture this season than helping fill our farms and fields with red, white, and blue.</div>
+    <div class="flag-products-rows">
+      <%= render 'spree/pages/partials/flag_products', flag_products: @briddon_flag_products, flag_products_count:  @briddon_flag_products_count, flag_translation: 'spree.pages.usa.bridon_us', assets: [['https://assets.agzaga.com/AmericaNet.webp'],'american','Net Wrap','hay-containment/net-wrap'] if @briddon_flag_products.present? %>
+      <%= render 'spree/pages/partials/flag_products', flag_products: @ariat_flag_products, flag_products_count:  @ariat_flag_products_count, flag_translation: 'spree.pages.usa.ariat', assets: [['https://assets.agzaga.com/ariat-shirt.webp'], 'ariat','Apparel','apparel'] if @ariat_flag_products.present? %>
+      <%= render 'spree/pages/partials/flag_products', flag_products: @allied_flag_products, flag_products_count:  @allied_flag_products_count, flag_translation: 'spree.pages.usa.allied', assets: [['https://assets.agzaga.com/Artboard.webp'], 'allied', 'Flags', 'extras/flags'] if @allied_flag_products.present? %>
+      <%= render 'spree/pages/partials/flag_products', flag_products: @accessories_flag_products, flag_products_count:  @accessories_flag_products_count, flag_translation: 'spree.pages.usa.accessories', assets: [['https://assets.agzaga.com/Cousin%20Drew%20GYFO%20posing-11.webp'], 'accessories'] if @accessories_flag_products.present? %>
+    </div>
+  </div>
+
+  <div class="order-delivered">
+    <div class="delivered-heading">
+      Get Your Flag On With Us!
+    </div>
+    <div class="social-media-logos">
+      <%= render 'spree/pages/partials/social_media', size: 100, extra_params: 'agzagasocial' %>
+    </div>
+
+    <div class="social-video-container">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/hG6Hq7aqsbU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+
+# touched on 2025-05-22T20:38:26.104072Z
+# touched on 2025-05-22T22:49:20.595527Z
