@@ -1,0 +1,51 @@
+<% admin_breadcrumb("Tracking URLs") %>
+<% admin_layout "full-width" %>
+
+<% content_for :page_actions do %>
+  <% if can?(:create, Spree::Label) %>
+    <li>
+      <%= link_to 'Create Tracking Url Hint', spree.new_admin_tracking_lookup_path, id: 'admin_new_tracking_url_link', class: 'btn btn-primary' %>
+    </li>
+  <% end %>
+<% end %>
+
+<h4 class="text-center mb-3">Tracking URLs</h4>
+
+<% if @tracking_urls.present? %>
+  <div style="width: 100%; overflow-x: scroll;">
+    <table class="index" width="100%" id="listing_orders" data-hook>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>URL</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @tracking_urls.each do |tracking_url| %>
+          <tr>
+            <td><%= tracking_url.id %></td>
+            <td><%= tracking_url.url %></td>
+            <td><%= link_to '', edit_admin_tracking_lookup_path(tracking_url.id), class: 'edit fa fa-edit icon_link with-tip no-text' %></td>
+            <td><%= link_to '', admin_tracking_lookup_path(tracking_url.id), method: :delete, class: 'fa fa-trash icon_link' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+  <div class="no-objects-found">
+    <% if can? :manage, Spree::TrackingLookup %>
+      <%= render 'spree/admin/shared/no_objects_found',
+                   resource: Spree::TrackingLookup,
+                   new_resource_url: spree.new_admin_tracking_lookup_path %>
+    <% end %>
+  </div>
+<% end %>
+<%= paginate @tracking_urls, theme: "solidus_admin" %>
+
+# touched on 2025-05-22T19:15:38.005003Z
+# touched on 2025-05-22T19:17:07.899410Z
+# touched on 2025-05-22T23:44:32.349698Z

@@ -1,0 +1,32 @@
+<div class="d-none <%= spree_user_signed_in? || cookies[:visited] ? 'hide-subscriber' : 'show-subscriber' %>" aria-expanded="false" data-toggle="modal" data-target="#cta-registration-modal"></div>
+
+<% cookies[:visited] = { value: 'true' } %>
+<div
+  class="modal checkout-login-modal subscriber-login-modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+  id="cta-registration-modal"
+>
+  <div class="modal-dialog subscriber-modal-dialog" role="document">
+    <div class="modal-content" id="cta-registration-content">
+      <div type="button" class="close sub-modal-close" data-dismiss="modal" aria-label="Close">
+        <%= image_tag("modal-close.svg") %>
+      </div>
+
+      <div class="modal-header">
+        <div class="header-text">
+          <%= render 'spree/shared/subscriber_modal_text' %>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <%= render 'spree/shared/subscriber_registration', name: 'CONTINUE' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+# touched on 2025-05-22T23:46:51.296411Z
+# touched on 2025-05-22T23:47:13.013242Z

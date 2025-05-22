@@ -1,0 +1,25 @@
+<% store_credit = @order.payments.where(source_type: "Spree::StoreCredit")&.last&.source %>
+<% card = @order.payments.where(source_type: "Spree::CreditCard")&.last&.source %>
+
+<div class="field field-required col-12" data-hook="card_name">
+  <%= label_tag "name_on_card", t('spree.name_on_card') %>
+  <%= text_field_tag "card_name", card.name, { id: "name_on_card", class: 'cardName w-100', disabled: true } %>
+</div>
+
+<div class="field field-required card_number col-8 pr-4" data-hook="card_number">
+  <%= label_tag "card_number", t('spree.card_number') %>
+  <%= text_field_tag "card_number", card.last_digits.to_s.prepend('**** **** ****'), {id: 'card_number', class: 'required cardNumber w-100', size: 19, maxlength: 19, type: "tel", disabled:true } %>
+</div>
+
+<div class="field field-required card_code col-4" data-hook="card_type">
+  <%= label_tag "card_type", 'Type' %>
+  <%= text_field_tag "card_type", card.cc_type, {id: 'card_type', class: 'required cardCode w-100', size: 5, type: "tel", disabled: true } %>
+</div>
+
+<div class="field field-required card_expiration col-12" data-hook="card_expiration">
+  <%= label_tag "card_expiry", t('spree.expiration') %>
+  <%= text_field_tag "card_expiry", "#{card.month} / #{card.year}", id: 'card_expiry', class: "required cardExpiry w-100", type: "tel", disabled: true %>
+</div>
+
+# touched on 2025-05-22T23:37:39.693506Z
+# touched on 2025-05-22T23:45:52.730269Z
