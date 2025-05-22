@@ -1,0 +1,314 @@
+<% content_for :title, 'Agzaga - FAQ\'s' %>
+
+<div class="faq-container">
+  <div class="img-query-section">
+    <div class="faq-image">
+      <picture>
+        <source srcset="https://assets.agzaga.com/about_us/help-center-cta.webp" type="image/webp">
+        <img src='https://assets.agzaga.com/about_us/help-center-cta.jpg' alt='Help Center' loading="lazy" class="help-center">
+      </picture>
+    </div>
+
+    <div class="query-section">
+      <div class="help-text">
+        Help Center
+      </div>
+
+      <div class="help-heading">
+        How can we help you?
+      </div>
+
+      <div class="help-text-1">
+        Our help center can instantly give you answers to many frequently asked questions.
+      </div>
+
+      <div class="ag-input-neutral faq-search-box">
+        <div class="ag-input-group-box faq-search-group">
+          <input type="text" class="faq-search-input poppins-text-16" id="faq-search-input" placeholder="What can we help you with?" aria-label="FaqQuestion" aria-describedby="basic-addon1">
+          <div class="ag-input-icon-append">
+            <%= image_tag "faq-search.png", class: 'search-icon', alt: 'Search' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-line"></div>
+
+</div>
+
+<div class="no-question-block">
+
+  <div class="no-question-content">
+
+    <div class="top-head">
+      <div class="alert-icon">
+        <%= image_tag 'no-question.png', alt:"", loading: 'lazy' %>
+      </div>
+      <div class="mobile-w-100">
+        <div class="no-question-h4">
+          Good question, looks like we haven’t answered that yet!
+        </div class="no-question-sub-title">
+        <div class="no-question-sub-title">
+          We’d be happy to, though. Contact our support team and we’ll get back to you with an answer as soon as we can.
+        </div>
+        <div class="ag-btn-lg ag-btn-primary contact-support-icon contact-support-team">Contact Support</div>
+      </div>
+
+      <div class="close-alert-section">
+        <%= image_tag 'close-alert-icon.png', alt:"", loading: 'lazy' %>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="faq-container faq-support-section" id="help-center-faq-section">
+  <div class="qa-section">
+
+    <div class="faq-block">
+
+      <div class="faq-h4">Frequently Asked Questions</div>
+      <div class="heading-bottom-border"></div>
+
+      <div id="faq-collapse-group">
+        <% @help_center&.FAQs.each do |faq| %>
+          <div class="search-control-div">
+            <div class="card">
+              <div class="question search-text" id="question-<%=faq.id%>" data-toggle="collapse" data-target="#answer-<%= faq.id %>" aria-expanded="false" aria-controls="answer-<%= faq.id %>">
+                <%= raw(faq.question) %>
+              </div>
+
+              <div id="answer-<%= faq.id %>" class="collapse" aria-labelledby="question-<%=faq.id%>" data-parent="#faq-collapse-group">
+                <div class="answer search-text">
+                  <%= raw(faq.answer) %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="faq-block">
+      <div class="faq-h4">Shipping &amp; Returns</div>
+      <div class="heading-bottom-border"></div>
+        <div id="shipping-collapse-group">
+          <% @help_center.Shippings&.each do |shipping| %>
+            <div class="search-control-div">
+              <div class="card">
+                <div class="question search-text" id="question-<%= shipping.id %>" data-toggle="collapse" data-target="#answer-<%= shipping.id %>" aria-expanded="false" aria-controls="answer-<%= shipping.id %>">
+                  <%= raw(shipping.question) %>
+                </div>
+
+                <div id="answer-<%= shipping.id %>" class="collapse" aria-labelledby="question-<%= shipping.id %>" data-parent="#shipping-collapse-group">
+                  <div class="answer search-text">
+                    <%= raw(shipping.answer) %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+    </div>
+
+  </div>
+
+  <div class="contact-section" id="contact-support-section">
+    <div class="contact-support">
+
+      <div class="support-heading">
+        Contact Support
+      </div>
+
+      <div class="support-sub-heading">
+        Tell us a bit about you, and a member of our team will get back to you as soon as we can!
+      </div>
+
+      <div class="support-badge support-message">
+        Send Message
+      </div>
+      <div class="support-badge support-email">
+        <a href="mailto: support@agzaga.com">support@agzaga.com</a>
+      </div>
+      <div class="support-badge support-phone">
+        <a href="tel: 1-888-249-7412">1-888-249-7412</a>
+      </div>
+
+      <div class="support-border"></div>
+
+      <div class="support-h4">
+        Get social with Agzaga
+      </div>
+
+      <div class="social-icon-block">
+
+        <div class="support-social-icon">
+          <a href="https://www.facebook.com/agzagasocial" target="_blank">
+            <picture>
+              <source src="https://assets.agzaga.com/public_images/help-center-facebook-icon.webp" type="image/webp">
+              <img src="https://assets.agzaga.com/public_images/help-center-facebook-icon.png" alt="facebook icon" loading="lazy">
+            </picture>
+          </a>
+        </div>
+
+        <div class="support-social-icon">
+          <a href="https://www.instagram.com/agzagasocial" target="_blank">
+            <picture>
+              <source src="https://assets.agzaga.com/public_images/help-center-insta-icon.webp" type="image/webp">
+              <img src="https://assets.agzaga.com/public_images/help-center-insta-icon.png" alt="instagram icon" loading="lazy">
+            </picture>
+          </a>
+        </div>
+
+        <div class="support-social-icon">
+          <a href="https://www.youtube.com/channel/UCbakHBOpI1LJAMsqTvmE13w" target="_blank">
+            <picture>
+              <source src="https://assets.agzaga.com/public_images/help-center-youtube-icon.webp" type="image/webp">
+              <img src="https://assets.agzaga.com/public_images/help-center-youtube-icon.png" alt="youtube icon" loading="lazy">
+            </picture>
+          </a>
+        </div>
+
+        <div class="support-social-icon">
+          <a href=" https://www.tiktok.com/t/ZTdTg7MhQ/" target="_blank">
+            <picture>
+              <source src="https://assets.agzaga.com/public_images/help-center-tiktok-icon.webp" type="image/webp">
+              <img src="https://assets.agzaga.com/public_images/help-center-tiktok-icon.png" alt="tiktok icon" loading="lazy">
+            </picture>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="contact-form">
+      <%= form_with url: contacts_path,  id: "contact-form", class: "contact-us-form", method: :post, local: false do |form| %>
+        <div class="contact-row">
+
+          <div class="contact-half-block ag-input-neutral">
+            <div class="ag-input-label">
+              <%= form.label :firstname, "First Name", class: "poppins-text-16 bold" %>
+            </div>
+            <div class="ag-input-group-box">
+              <%= form.text_field :firstname, class: "ag-input-field form-control poppins-text-16", placeholder: "What's your first name?", required: true, id: "firstname" %>
+            </div>
+          </div>
+
+          <div class="contact-half-block ag-input-neutral">
+            <div class="ag-input-label">
+              <%= form.label :lastname, "Last Name", class: "poppins-text-16 bold" %>
+            </div>
+            <div class="ag-input-group-box">
+              <%= form.text_field :lastname, class: "ag-input-field form-control poppins-text-16", placeholder: "What's your last name?", required: true, id: "lastname" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-row mobile-only-email-margin">
+          <div class="contact-full-block ag-input-neutral">
+            <div class="ag-input-label">
+              <%= form.label :email, "Email", class: "poppins-text-16 bold" %>
+            </div>
+
+            <div class="ag-input-group-box email-section">
+              <%= form.email_field :email, class: "form-control poppins-text-16", placeholder: "What's your email?", required: true, id: "email" %>
+              <%= image_tag "support_email.png", class: 'ag-input-icon-append search-icon', alt: 'Search' %>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-row">
+          <div class="contact-full-block ag-input-neutral">
+            <div class="ag-input-label">
+              <%= form.label :messsage, "Message", class: "poppins-text-16 bold" %>
+            </div>
+
+            <div class="ag-input-group-box">
+              <%= form.text_area :messsage, class: "form-control text-control", id: "message", placeholder: "Let us know your question about Agzaga’s products and/or services, or a short description of any problems you’re running into.", rows: "6" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="btn-block">
+          <%= form.submit "Submit", id: "submitButton", class: "ag-btn-lg ag-btn-primary" %>
+
+          <div class="sub-title">
+            By clicking Submit, I agree to Agzaga’s <a href="privacy_policy">Privacy Policy</a>.
+          </div>
+        </div>
+      <% end %>
+
+      <div class="hide-element" id= "new-form-success-message">
+        <h1 class="poppins-h3 mt-4 mb-2">Thanks for contacting us!</h1>
+        <div class="poppins-text-16 mb-4" >We will answer you as soon as possible!</div>
+        <p class="ag-btn-lg ag-btn-primary"><%= link_to 'Return Home', spree::root_url, class: "poppins-text-16 bold btn-home" %></p>
+      </div>
+    </div>
+
+    <div class="mobile-only-support-block">
+      <div class="mobile-support-heading">
+        Need Help Fast?
+      </div>
+
+      <div class="support-badge support-message">
+        Send Message
+      </div>
+
+      <div class="support-badge support-email">
+        <a href="mailto: support@agzaga.com">support@agzaga.com</a>
+      </div>
+
+      <div class="support-badge support-phone">
+        <a href="tel: 1-888-249-7412">1-888-249-7412</a>
+      </div>
+
+      <div class="social-icon-block">
+        <div class="support-social-icon">
+          <a href="https://www.facebook.com/agzagasocial" target="_blank">
+            <picture>
+              <source src="https://assets.agzaga.com/public_images/help-center-facebook-icon.webp" type="image/webp">
+              <img src="https://assets.agzaga.com/public_images/help-center-facebook-icon.png" alt="facebook icon" loading="lazy">
+            </picture>
+          </a>
+        </div>
+
+        <div class="support-social-icon">
+          <a href="https://www.instagram.com/agzagasocial" target="_blank">
+            <picture>
+              <source src="https://assets.agzaga.com/public_images/help-center-insta-icon.webp" type="image/webp">
+              <img src="https://assets.agzaga.com/public_images/help-center-insta-icon.png" alt="instagram icon" loading="lazy">
+            </picture>
+          </a>
+        </div>
+
+        <div class="support-social-icon">
+          <a href="https://www.youtube.com/channel/UCbakHBOpI1LJAMsqTvmE13w" target="_blank">
+            <picture>
+              <source src="https://assets.agzaga.com/public_images/help-center-youtube-icon.webp" type="image/webp">
+              <img src="https://assets.agzaga.com/public_images/help-center-youtube-icon.png" alt="youtube icon" loading="lazy">
+            </picture>
+          </a>
+        </div>
+
+        <div class="support-social-icon">
+          <a href="https://www.tiktok.com/t/ZTdTg7MhQ/" target="_blank">
+            <picture>
+              <source src="https://assets.agzaga.com/public_images/help-center-tiktok-icon.webp" type="image/webp">
+              <img src="https://assets.agzaga.com/public_images/help-center-tiktok-icon.png" alt="tiktok icon" loading="lazy">
+            </picture>
+          </a>
+        </div>
+
+    </div>
+
+    </div>
+
+  </div>
+
+
+
+</div>
+
+# touched on 2025-05-22T20:41:42.982204Z
+# touched on 2025-05-22T23:04:42.791360Z

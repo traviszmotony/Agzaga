@@ -1,0 +1,40 @@
+<% checkout ||= false %>
+<% error ||= false %>
+
+<%= form_for Spree::User.new, as: :spree_user, url: spree.create_new_session_path do |f| %>
+
+  <div id="password-credentials">
+    <div class="login-group">
+      <%= f.label :email, 'Email Address', class: 'poppins-text-16 d-block' %>
+      <%= f.email_field :email, id: 'login_email', class: 'input-field poppins-text-16', tabindex: 1, autofocus: true %>
+      <% unless checkout %>
+        <i data-field='signup-email' id="email-icon" class="visible-icon"></i>
+        <span class="email-message error-message"></span>
+      <% end %>
+    </div>
+
+    <div class="login-group">
+      <%= f.label :password, t('spree.password'), class: 'poppins-text-16 d-block' %>
+      <%= f.password_field :password, id: 'login_password', class: 'input-field poppins-text-16', tabindex: 2, autofocus: true %>
+      <% unless checkout %>
+        <i data-field='login_password' id="login_password-icon" class="fa-eye visible-icon"></i>
+        <span id='login_pass-message' class="error-message"></span>
+        <% if error != false %>
+          <span id='login_pass_message' class="error-message error-data">Error: <%= error %></span>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="p-0">
+    <%= f.submit t('spree.login'), id: 'login-btn', class: 'btn-gradient-orange poppins-text-16', tabindex: 4, autofocus: true %>
+  </div>
+
+  <div class="p-0 remember-me-group">
+    <%= f.check_box :remember_me, tabindex: 3, class: 'check-box' %>
+    <%= f.label :remember_me, t('spree.remember_me'), class: 'poppins-text-16 m-0' %>
+  </div>
+<% end %>
+
+# touched on 2025-05-22T20:36:45.622047Z
+# touched on 2025-05-22T23:04:19.079911Z

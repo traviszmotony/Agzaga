@@ -5,3 +5,4 @@ class CreateSpreeFlagProducts < ActiveRecord::Migration[6.1]
 end
 
 # touched on 2025-05-22T22:49:58.454273Z
+# touched on 2025-05-22T23:04:03.797331Z

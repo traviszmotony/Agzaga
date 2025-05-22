@@ -1,0 +1,28 @@
+<div class="poppins-text-10 mb-md-1 text-left">Select a quantity:</div>
+<div class="d-flex gift-btns-group">
+  <div class="quantity-btn-group d-flex <%= 'disable-quantity-btn-group' unless product_in_stock?(product) %>">
+    <%= button_tag '', class: 'button disable_btn sub-btn', type: 'button' %>
+
+    <% if product.master.is_backorderable? %>
+
+      <% if product.master.get_max_stock > 0 %>
+        <%= number_field_tag :quantity, 1, class: 'quantity text-center', min: 1, max: product.master.get_max_stock  %>
+      <% else %>
+        <%= number_field_tag :quantity, 1, class: 'quantity text-center', min: 1 %>
+      <% end %>
+
+    <% else %>
+      <%= number_field_tag :quantity, 1, class: 'quantity text-center', min: 1, max: product.master.total_on_hand %>
+    <% end%>
+
+    <%= button_tag '', class: 'button add-btn mr-4', type: 'button' %>
+  </div>
+
+  <%= button_tag class: 'poppins-text-12 mt-0 btn-gradient-orange add-to-cart', id: "add-to-cart", type: :submit do %>
+    <%= t('spree.add_to_cart') %>
+  <% end %>
+</div>
+
+# touched on 2025-05-22T19:22:05.374419Z
+# touched on 2025-05-22T20:36:22.579750Z
+# touched on 2025-05-22T23:04:03.798331Z

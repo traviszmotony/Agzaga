@@ -1,0 +1,23 @@
+<%= render "spree/shared/error_messages", target: @product_question %>
+
+<%= f.field_container :name do %>
+  <%= f.label :name %><br />
+  <%= f.text_field :name, maxlength: "255", size: "60" %>
+<% end %>
+
+<%= f.field_container :question do %>
+  <%= f.label :question %><br />
+  <%= f.text_field :question, maxlength: "255", size: "60" %>
+<% end %>
+
+<%= f.field_container :answer do %>
+  <%= f.label :answer %><br />
+  <%= f.text_area :answer, required: true %>
+<% end %>
+
+<%= f.field_container :answered do %>
+  <%= f.hidden_field :answered, value: 'true' %>
+<% end %>
+
+# touched on 2025-05-22T19:23:21.461121Z
+# touched on 2025-05-22T23:06:32.551746Z

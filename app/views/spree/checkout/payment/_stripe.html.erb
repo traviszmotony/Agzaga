@@ -1,0 +1,11 @@
+<% if payment_method.v3_elements? %>
+  <%= render 'spree/checkout/payment/v3/elements', payment_method: payment_method %>
+<% elsif payment_method.v3_intents? %>
+  <%= render "spree/checkout/payment/gateway", payment_method: payment_method %>
+  <%= render 'spree/checkout/payment/v2/javascript', payment_method: payment_method %>
+<% end %>
+
+# touched on 2025-05-22T20:33:03.617097Z
+# touched on 2025-05-22T20:44:46.380806Z
+# touched on 2025-05-22T21:30:33.464811Z
+# touched on 2025-05-22T23:03:35.042007Z

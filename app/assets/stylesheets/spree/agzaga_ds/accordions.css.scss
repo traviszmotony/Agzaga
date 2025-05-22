@@ -1,0 +1,97 @@
+@import "spree/agzaga_ds/agzaga_variables";
+.ag-accordion {
+
+  input {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+  }
+  
+  /* Accordion styles */
+  .tabs {
+    overflow: hidden;
+  }
+  .tab {
+    width: 100%;
+    color: var(--palette-natural-900);
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    overflow: hidden;
+    margin-bottom: 24px;
+    &-label {
+      display: flex;
+      justify-content: flex-start;
+      padding: 16px 20px;
+      margin: 0;
+      background: var(--palette-shades-0);
+      font-weight: bold;
+      cursor: pointer;
+      /* Icon */
+      &:hover {
+        background: var(--palette-natural-50);
+      }
+      &::after {
+        content: "\276F";
+        width: 10px;
+        height: 10px;
+        text-align: center;
+        transition: all .35s;
+        position: absolute;
+        right: 26px;
+        transform: rotate(90deg);
+        color: var(--palette-natural-500);
+      }
+    }
+    &-content {
+      max-height: 0;
+      font-family: Poppins;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 24px;
+      color: var(--palette-natural-500);
+      background: var(--palette-shades-0);
+      transition: all .35s;
+    }
+    &-close {
+      display: flex;
+      justify-content: flex-end;
+      padding: 1em;
+      font-size: 0.75em;
+      background: var(--palette-natural-500);
+      cursor: pointer;
+      &:hover {
+        background: var(--palette-natural-50);
+      }
+    }
+    .accordion-icon {
+      margin-right: 20px;
+    }
+  }
+
+  .tab-seperator {
+    border-bottom: 1px solid var(--palette-natural-200);
+  }
+
+  .tab-disable {
+    color: var(--palette-natural-300);
+  }
+  
+  // :checked
+  input:checked {
+    + .tab-label {
+      background: var(--palette-natural-50);
+      &::after {
+        transform: rotate(-90deg);
+      }
+    }
+    ~ .tab-content {
+      max-height: 100vh;
+      padding: 16px 20px;
+    }
+  }  
+}
+# touched on 2025-05-22T22:58:56.664025Z

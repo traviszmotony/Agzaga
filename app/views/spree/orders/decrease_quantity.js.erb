@@ -1,0 +1,8 @@
+<% if @order.errors.blank? %>
+  window.$('#slider-adc-form').html('<%= j render 'spree/shared/slider_v2'%>');
+  window.$('#cart-page-line-items').html('<%= j render 'spree/shared/slider_v2', on_cart_page: true %>');
+  window.$('#cart-body-summary').html('<%= j render 'spree/shared/cart_summary'%>');
+<% end %>
+
+# touched on 2025-05-22T19:13:23.303305Z
+# touched on 2025-05-22T23:07:18.528242Z

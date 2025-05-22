@@ -1,0 +1,55 @@
+<% if @option_types.present? %>
+  <% @option_types.each do |option| %>
+    <% any_active_filter_present = params.dig(:option_filters).present? && (option.option_values.pluck(:id) & params.dig(:option_filters).map(&:to_i)).present? %>
+
+    <div data-toggle="collapse" data-target="#options-filter-group-<%= option.id %>" class="poppins-text-16 bold options-filter-heading" aria-expanded="<%= any_active_filter_present ? 'true' : 'false' %>">
+      <span><%= option.presentation %></span>
+      <span class="collapse-icon"></span>
+    </div>
+
+
+    <div class="collapse <%= 'show' if any_active_filter_present %>" id="options-filter-group-<%= option.id %>">
+      <div class="options-filter-group">
+
+        <% option.option_values.each do |value| %>
+          <div class="filter-check-box">
+            <% check_box_state = params.dig(:option_filters).present? && params.dig(:option_filters).include?(value.id.to_s) ? true : false %>
+            <%= check_box_tag "option_filters[]", value.id, check_box_state, {id: "option-filters-#{value.id}"} %>
+            <%= label_tag "option-filters-#{value.id}", value.name, class: "poppins-text-16 mb-0 category-label" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="grey-line"></div>
+  <% end %>
+<% end %>
+
+<% if @filter_types.present? %>
+  <% @filter_types.each do |filter| %>
+    <% any_active_filter_present = params.dig(:product_filters).present? && (filter.filter_values.pluck(:id) & params.dig(:product_filters).map(&:to_i)).present? %>
+
+    <div data-toggle="collapse" data-target="#filters-filter-group-<%= filter.id %>" class="poppins-text-16 bold options-filter-heading" aria-expanded="<%= any_active_filter_present ? 'true' : 'false' %>">
+      <span><%= filter.presentation %></span>
+      <span class="collapse-icon"></span>
+    </div>
+
+
+    <div class="collapse <%= 'show' if any_active_filter_present %>" id="filters-filter-group-<%= filter.id %>">
+      <div class="filters-filter-group">
+
+        <% filter.filter_values.each do |value| %>
+          <div class="filter-check-box">
+            <% check_box_state = params.dig(:product_filters).present? && params.dig(:product_filters).include?(value.id.to_s) ? true : false %>
+            <%= check_box_tag "product_filters[]", value.id, check_box_state, {id: "filter-filters-#{value.id}"} %>
+            <%= label_tag "filter-filters-#{value.id}", value.name, class: "poppins-text-16 mb-0 category-label" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="grey-line"></div>
+  <% end %>
+<% end %>
+
+# touched on 2025-05-22T23:07:06.912578Z
